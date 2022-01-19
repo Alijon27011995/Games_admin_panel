@@ -68,12 +68,6 @@
                         <input type="checkbox" class="form-check-input">
                       </label>
                     </div>
-
-
-
-
-
-                    
                   </td>
                   <td>
                     <img src="assets/images/faces/face2.jpg" alt="image" />
