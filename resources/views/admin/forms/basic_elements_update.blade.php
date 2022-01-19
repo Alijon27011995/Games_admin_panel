@@ -25,7 +25,9 @@
           <div class="card-body">
             <h4 class="card-title">Basic form elements</h4>
             <p class="card-description"> Basic form elements </p>
-            <form class="forms-sample">
+            <form method="POST" action="{{ route('user.create') }}">
+                @csrf
+                @method('POST')
               <div class="form-group">
                 <label for="exampleInputName1">Name</label>
                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
@@ -89,7 +91,7 @@
                 <label for="exampleInputPassword4">Your Notes</label>
                 <textarea name="commint" class="form-control"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary float-right mr-2">Submit</button>
+              <button type="submit" class="btn btn-primary btn-block enter-btn">save</button>
               {{-- <button class="btn btn-dark">Cancel</button> --}}
             </form>
           </div>

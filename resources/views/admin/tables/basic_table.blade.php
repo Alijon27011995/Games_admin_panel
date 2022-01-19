@@ -10,7 +10,7 @@
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a  href="{{route('user_table.create')}}" class="badge badge-outline-success">Create New User</a></li>
+        <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New User</a></li>
         {{-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> --}}
       </ol>
     </nav>

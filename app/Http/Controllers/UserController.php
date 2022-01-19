@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\User;
+use Illuminate\Http\Request;
+
+// use GuzzleHttp\Psr7\Request;
 
 class UserController extends Controller
 {
@@ -15,10 +18,36 @@ class UserController extends Controller
     return view('admin.tables.basic_table', compact('customers'));
    }
 
-   public function create()
+   public function create(Request $request)
    {
+
+
+    if ($request->method() == 'POST')
+    {
+    dd($request->all());
+
+        // $request->validate([
+        //     'user_name' => 'required|string',
+        //     'password' => 'required|string',
+        // ]);
+            // if ($request->user_name=='admin' && $request->password='admin12345') {
+            //     //    return 'came';
+            //     return view('admin.dashboard');
+            // } else {
+            //     return view('admin.samples.login');
+            // }
+
+    }
+    else
+    {
+        return view('admin.forms.basic_elements');
+    }
+
+
+
+
     //    return 'came';
-    return view('admin.forms.basic_elements');
+
    }
    public function update($id)
    {
