@@ -33,6 +33,11 @@ Route::get('/',function () {
 
 Route::get('/games/table','UserController@table')->name('user.tables');
 Route::get('/user/table/create','UserController@create')->name('user_table.create');
+Route::get('/user/table/update/{id}','UserController@update')->name('customers.update');
+Route::get('/user/table/destroy/{id}','UserController@destroy')->name('customers.destroy');
+
+
+
 
 // function () {
 

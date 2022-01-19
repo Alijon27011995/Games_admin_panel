@@ -32,27 +32,30 @@
                     <th>Phone Number</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th> Options </th>
+                    <th > Options </th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($customers as $key => $customer)
                 @if ($customer != null)
                     <tr>
-                        <td>{{ ($key+1)     }}</td>
+                        <td>{{ ($key+1)}}</td>
                         <td>{{$customer->games_type}}</td>
                         <td>{{$customer->date}}</td>
                         <td>{{$customer->time}}</td>
                         <td>{{$customer->name}}</td>
                         <td>{{$customer->phone}}</td>
                         <td>{{$customer->email}}</td>
-                        <td>{{$customer->status}}</td>
                         <td>
-                            <a class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
-                                <i class="icon-md  mdi mdi-table-edit text-warning"></i>
+                            <div class="badge badge-outline-success">{{$customer->status}}</div>
+                        </td>
+                        <td>
+                            <a href="{{route('customers.update', $customer->id)}}" class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
+                                <i  class="icon-md  mdi mdi-table-edit text-warning"></i>
                               </a>
-                              <a class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
-                                <i class="icon-md mdi mdi-delete text-danger "></i>
+                              <a href="{{route('customers.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <i  class="icon-md mdi mdi-delete text-danger "></i>
+
                             </a>
                         </td>
 
