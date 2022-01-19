@@ -13,8 +13,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $user=Games::get();
-        dd($user);
+        // $user=Games::get();
+        // dd($user);
         // return 'ceme';
         return view('admin.dashboard');
 
