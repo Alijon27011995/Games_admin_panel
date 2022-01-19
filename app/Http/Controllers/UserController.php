@@ -10,7 +10,7 @@ class UserController extends Controller
    {
     //    return 'came';
     $customers=User::where('status','active')->get();
-    // dd($customer);
+    // dd($customers);
     //  $customers = $customers->paginate(15);
     return view('admin.tables.basic_table', compact('customers'));
    }
@@ -27,7 +27,7 @@ class UserController extends Controller
     $user=User::where('id',$id)->first();
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.basic_elements_update');
+    return view('admin.forms.basic_elements_update',compact('user'));
    }
 
    public function destroy($id)

@@ -36,32 +36,38 @@
                 </tr>
               </thead>
               <tbody>
+                {{-- @dd($customers) --}}
+
+                @if ($customers)
+
                 @foreach($customers as $key => $customer)
-                @if ($customer != null)
-                    <tr>
-                        <td>{{ ($key+1)}}</td>
-                        <td>{{$customer->games_type}}</td>
-                        <td>{{$customer->date}}</td>
-                        <td>{{$customer->time}}</td>
-                        <td>{{$customer->name}}</td>
-                        <td>{{$customer->phone}}</td>
-                        <td>{{$customer->email}}</td>
-                        <td>
-                            <div class="badge badge-outline-success">{{$customer->status}}</div>
-                        </td>
-                        <td>
-                            <a href="{{route('customers.update', $customer->id)}}" class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
-                                <i  class="icon-md  mdi mdi-table-edit text-warning"></i>
-                              </a>
-                              <a href="{{route('customers.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
-                                <i  class="icon-md mdi mdi-delete text-danger "></i>
+                    @if ($customer != null)
+                        <tr>
+                            <td>{{ ($key+1)}}</td>
+                            <td>{{$customer->games_type}}</td>
+                            <td>{{$customer->date}}</td>
+                            <td>{{$customer->time}}</td>
+                            <td>{{$customer->name}}</td>
+                            <td>{{$customer->phone}}</td>
+                            <td>{{$customer->email}}</td>
+                            <td>
+                                <div class="badge badge-outline-success">{{$customer->status}}</div>
+                            </td>
+                            <td>
+                                <a href="{{route('customers.update', $customer->id)}}" class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
+                                    <i  class="icon-md  mdi mdi-table-edit text-warning"></i>
+                                </a>
+                                <a href="{{route('customers.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                    <i  class="icon-md mdi mdi-delete text-danger "></i>
 
-                            </a>
-                        </td>
+                                </a>
+                            </td>
 
-                    </tr>
+                        </tr>
+                    @endif
+                @endforeach
+
                 @endif
-            @endforeach
 
 
               </tbody>
