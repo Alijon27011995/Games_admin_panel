@@ -34,7 +34,9 @@ Route::match(['get', 'post'],'/user/table/create', 'UserController@create')->nam
 
 Route::get('/games/table','UserController@table')->name('user.tables');
 // Route::get('/user/table/create','UserController@create')->name('user.create');
-Route::get('/user/table/update/{id}','UserController@update')->name('customers.update');
+Route::get('/user/table/edit/{id}','UserController@edit')->name('customers.edit');
+Route::post('/user/table/update','UserController@update')->name('user.update');
+
 Route::get('/user/table/destroy/{id}','UserController@destroy')->name('customers.destroy');
 
 

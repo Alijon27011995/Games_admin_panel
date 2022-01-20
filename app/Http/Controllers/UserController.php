@@ -24,18 +24,21 @@ class UserController extends Controller
 
     if ($request->method() == 'POST')
     {
-    dd($request->all());
+    // dd($request->all());
 
-        // $request->validate([
-        //     'user_name' => 'required|string',
-        //     'password' => 'required|string',
-        // ]);
-            // if ($request->user_name=='admin' && $request->password='admin12345') {
-            //     //    return 'came';
-            //     return view('admin.dashboard');
-            // } else {
-            //     return view('admin.samples.login');
-            // }
+            $user= new User;
+            $user->name=$request->name;
+            $user->email=$request->email;
+            $user->phone=$request->phone_number;
+            $user->players=$request->players;
+            $user->games_type=$request->games;
+            $user->date=$request->date;
+            $user->time=$request->time;
+            $user->status="active";
+            // dd($user);
+            if ($user->save()) {
+                return redirect()->route("user.tables");
+            }
 
     }
     else
@@ -49,11 +52,32 @@ class UserController extends Controller
     //    return 'came';
 
    }
-   public function update($id)
+   public function edit($id)
    {
 
 
     $user=User::where('id',$id)->first();
+    //    dd($id);
+    //    return 'came';
+    return view('admin.forms.basic_elements_update',compact('user'));
+   }
+
+   public function update(Request $request)
+   {
+
+    $user=User::where('id',$request->user_id)->first();
+    $user->name=$request->name;
+    $user->email=$request->email;
+    $user->phone=$request->phone_number;
+    $user->players=$request->players;
+    $user->games_type=$request->games;
+    $user->date=$request->date;
+    $user->time=$request->time;
+    $user->status="active";
+    // dd($user);
+    if ($user->save()) {
+        return redirect()->route("user.tables");
+    }
     //    dd($id);
     //    return 'came';
     return view('admin.forms.basic_elements_update',compact('user'));

@@ -31,12 +31,12 @@
                     <th>Full Name </th>
                     <th>Phone Number</th>
                     <th>Email</th>
+                    <th>Create</th>
                     <th>Status</th>
-                    <th > Options </th>
+                    <th>Options </th>
                 </tr>
               </thead>
               <tbody>
-                {{-- @dd($customers) --}}
                 @if ($customers)
 
                 @foreach($customers as $key => $customer)
@@ -49,11 +49,12 @@
                             <td>{{$customer->name}}</td>
                             <td>{{$customer->phone}}</td>
                             <td>{{$customer->email}}</td>
+                            <td>{{$customer->created_at}}</td>
                             <td>
                                 <div class="badge badge-outline-success">{{$customer->status}}</div>
                             </td>
                             <td>
-                                <a href="{{route('customers.update', $customer->id)}}" class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
+                                <a href="{{route('customers.edit', $customer->id)}}" class="btn btn-soft-primary  btn-circle btn-sm" title="View Reason">
                                     <i  class="icon-md  mdi mdi-table-edit text-warning"></i>
                                 </a>
                                 <a href="{{route('customers.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
