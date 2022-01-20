@@ -18,6 +18,36 @@ class UserController extends Controller
     return view('admin.tables.basic_table', compact('customers'));
    }
 
+
+   public function new_user_api(Request $request)
+   {
+    dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'players' => 'required',
+            'games_type' => 'required',
+            'name' => 'required'
+        ]);
+
+
+        $user=User::where('id',$request->user_id)->first();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->phone=$request->phone_number;
+        $user->players=$request->players;
+        $user->games_type=$request->games;
+        $user->date=$request->date;
+        $user->time=$request->time;
+        $user->status="active";
+        // dd($user);
+        if ($user->save()) {
+            return redirect()->route("user.tables");
+        }
+
+   }
+
    public function create(Request $request)
    {
 
