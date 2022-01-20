@@ -27,7 +27,7 @@
       <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Update user</h4>
+            <h4 class="card-title">Create user</h4>
             <p class="card-description"> Basic form elements </p>
             <form method="POST" action="{{ route('user.create') }}">
                 @csrf
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword4">Date</label>
-                    <input name="date"   type="text" class="form-control" placeholder="YYYY-dd-mm" name="data"  required>
+                    <input name="date"   type="date" class="form-control" placeholder="YYYY-dd-mm" name="data"  required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword4">time</label>

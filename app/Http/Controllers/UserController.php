@@ -27,12 +27,11 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'players' => 'required',
-            'games_type' => 'required',
-            'name' => 'required'
+            'games_type' => 'required'
         ]);
 
 
-        $user=User::where('id',$request->user_id)->first();
+        $user= new User;
         $user->name=$request->name;
         $user->email=$request->email;
         $user->phone=$request->phone_number;
