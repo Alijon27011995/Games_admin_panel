@@ -37,7 +37,6 @@
               </thead>
               <tbody>
                 {{-- @dd($customers) --}}
-
                 @if ($customers)
 
                 @foreach($customers as $key => $customer)
@@ -68,6 +67,7 @@
                 @endforeach
 
                 @endif
+
 
 
               </tbody>
