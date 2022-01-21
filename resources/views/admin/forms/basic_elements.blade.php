@@ -52,6 +52,7 @@
 
 
                 <div class="form-group">
+                    <label for="exampleInputPassword4">time</label>
                     @php
                     //   $value_1=date("10:30");
                         $value_1=date("10:00");
@@ -86,10 +87,10 @@
                 </div>
 
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="exampleInputPassword4">time</label>
                     <input name="time"  type="time" name="start" class="form-control" placeholder="HH:mm"  >
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="exampleInputPassword4">Players</label>
                     <select id="times" name="players" class="form-control">
