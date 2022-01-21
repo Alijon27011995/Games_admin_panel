@@ -6,7 +6,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Games;
 use App\Models\User;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class HomeController extends Controller
 {
@@ -16,7 +19,24 @@ class HomeController extends Controller
         // $user=Games::get();
         // dd($user);
         // return 'ceme';
-        return view('admin.dashboard');
+        $tz = new DateTimeZone('Asia/tashkent');
+        // $date=setTimezone($tz);
+                // dd($tz);
+
+
+                // use Carbon\Carbon;
+                // $carbon = Carbon::now(DateTimeZon('Asia/tashkent'));
+                // dd($carbon);
+            //     $tomorrow = Carbon::tomorrow();
+            //     $yesterday = Carbon::yesterday();
+            //     $today = Carbon::today();
+            // dd($today);
+
+            $mytime = Carbon::now($tz);
+         echo $mytime->toDateTimeString();
+
+
+        // return view('admin.dashboard');
 
     }
 
@@ -40,6 +60,8 @@ class HomeController extends Controller
                 'password' => 'required|string',
             ]);
                 if ($request->user_name=='admin' && $request->password='admin12345') {
+
+
                     //    return 'came';
                     return view('admin.dashboard');
                 } else {

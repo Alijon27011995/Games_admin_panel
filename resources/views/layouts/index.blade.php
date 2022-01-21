@@ -205,6 +205,8 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
+
+<script src="../../assets/js/chart.js"></script>
     @yield('scripts')
   </body>
 </html>
