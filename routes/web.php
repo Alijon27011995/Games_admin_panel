@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
  //================= User Controller =======================
- 
+
 Route::get('/dashboard','UserController@dashboard')->name('admin.dashboard');
 
 

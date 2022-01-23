@@ -55,34 +55,34 @@
                     <label for="exampleInputPassword4">time</label>
                     @php
                     //   $value_1=date("10:30");
-                        $value_1=date("10:00");
-                        $value_2=date("11:15");
-                        $value_3=date("12:30");
-                        $value_4=date("13:45");
-                        $value_5=date("15:00");
-                        $value_6=date("16:15");
-                        $value_7=date("17:30");
-                        $value_8=date("18:45");
-                        $value_9=date("20:00");
-                        $value_10=date("21:15");
-                        $value_11=date("12:30");
-                        $value_12=date("23:45");
-                        $value_13=date("01:00");
+                        $value_1=date("10:00:00");
+                        $value_2=date("11:15:00");
+                        $value_3=date("12:30:00");
+                        $value_4=date("13:45:00");
+                        $value_5=date("15:00:00");
+                        $value_6=date("16:15:00");
+                        $value_7=date("17:30:00");
+                        $value_8=date("18:45:00");
+                        $value_9=date("20:00:00");
+                        $value_10=date("21:15:00");
+                        $value_11=date("12:30:00");
+                        $value_12=date("23:45:00");
+                        $value_13=date("23:45:00");
                     @endphp
-                    <select id="times" class="form-control">
-                        <option name="{{$value_1}}" value="{{$value_1}}"  class="form-control">{{$value_1}}</option>
-                        <option name="{{$value_2}}" value="{{$value_2}}" class="form-control">{{$value_2}}</option>
-                        <option name="{{$value_3}}" value="{{$value_3}}" class="form-control">{{$value_3}}</option>
-                        <option name="{{$value_4}}" value="{{$value_4}}"  class="form-control">{{$value_4}}</option>
-                        <option name="{{$value_5}}" value="{{$value_5}}"  class="form-control">{{$value_5}}</option>
-                        <option name="{{$value_6}}" value="{{$value_6}}" class="form-control">{{$value_6}}</option>
-                        <option name="{{$value_7}}" value="{{$value_7}}" class="form-control">{{$value_7}}</option>
-                        <option name="{{$value_8}}" value="{{$value_8}}"  class="form-control">{{$value_8}}</option>
-                        <option name="{{$value_9}}" value="{{$value_9}}"  class="form-control">{{$value_9}}</option>
-                        <option name="{{$value_10}}" value="{{$value_10}}" class="form-control">{{$value_10}}</option>
-                        <option name="{{$value_11}}" value="{{$value_11}}" class="form-control">{{$value_11}}</option>
-                        <option name="{{$value_12}}" value="{{$value_12}}"  class="form-control">{{$value_12}}</option>
-                        <option name="{{$value_13}}" value="{{$value_13}}"  class="form-control">{{$value_13}}</option>
+                    <select id="times" name="time" class="form-control">
+                        <option name="{{$value_1}}" value="{{$value_1}}"  class="form-control">10:00</option>
+                        <option name="{{$value_2}}" value="{{$value_2}}" class="form-control">11:15</option>
+                        <option name="{{$value_3}}" value="{{$value_3}}" class="form-control">12:30</option>
+                        <option name="{{$value_4}}" value="{{$value_4}}"  class="form-control">13:45</option>
+                        <option name="{{$value_5}}" value="{{$value_5}}"  class="form-control">15:00</option>
+                        <option name="{{$value_6}}" value="{{$value_6}}" class="form-control">16:15</option>
+                        <option name="{{$value_7}}" value="{{$value_7}}" class="form-control">17:30</option>
+                        <option name="{{$value_8}}" value="{{$value_8}}"  class="form-control">18:45</option>
+                        <option name="{{$value_9}}" value="{{$value_9}}"  class="form-control">20:00</option>
+                        <option name="{{$value_10}}" value="{{$value_10}}" class="form-control">21:15</option>
+                        <option name="{{$value_11}}" value="{{$value_11}}" class="form-control">12:30</option>
+                        <option name="{{$value_12}}" value="{{$value_12}}"  class="form-control">23:45</option>
+                        <option name="{{$value_13}}" value="{{$value_13}}"  class="form-control">23:45</option>
                     </select>
                 </div>
 

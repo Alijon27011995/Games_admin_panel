@@ -18,8 +18,6 @@
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        {{-- <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New User</a></li> --}}
-        {{-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> --}}
       </ol>
     </nav>
 </div>
@@ -61,7 +59,7 @@
                             <td>{{$customer->email}}</td>
                             <td>{{$customer->created_at}}</td>
                             <td>
-                                <div class="badge badge-outline-success">{{$customer->status}}</div>
+                                <div class="badge badge-outline-warning">{{$customer->status}}</div>
                             </td>
                             <td>
                                 <a href="{{route('customer_history.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">

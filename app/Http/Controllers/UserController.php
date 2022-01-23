@@ -60,10 +60,37 @@ class UserController extends Controller
    public function games_table()
    {
     //    return 'came';
-    $customers=User::where('status','active')->get();
-    // dd($customers);
-    //  $customers = $customers->paginate(15);
-    return view('admin.tables.basic_table', compact('customers'));
+
+        $tz = new DateTimeZone('Asia/tashkent');
+        $mytime = Carbon::now($tz);
+        $date=date($mytime->toDateString());
+        $time=date($mytime->toTimeString());
+
+
+        $users=User::where('status','active')->get();
+        //    dd($users);
+        foreach ($users as  $user) {
+            //    dd($user);
+                if ($user->date >= $date) {
+                    if ($user->date > $date) {
+                        $user->status='active';
+                    }
+                    elseif($user->date == $date && $user->time > $time){
+                        $user->status='active';
+                    }
+                    elseif ($user->date == $date && $user->time < $time) {
+                        $user->status='history';
+                    }
+                }
+                else{
+                $user->status='history';
+                }
+                $user->save();
+
+        }
+
+        $customers=User::where('status','active')->get();
+        return view('admin.tables.basic_table', compact('customers'));
    }
 
    public function games_history()
@@ -80,8 +107,7 @@ class UserController extends Controller
 
     if ($request->method() == 'POST')
     {
-    // dd($request->all());
-
+            // dd($request->all());
             $user= new User;
             $user->name=$request->name;
             $user->email=$request->email;
