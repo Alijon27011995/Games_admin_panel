@@ -12,6 +12,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+
+    public function login_blade()
+    {
+        // return 'ceme';
+        return view('admin.samples.login');
+
+    }
+
+
     public function dashboard()
     {
            return $this->date_time();
@@ -48,7 +57,7 @@ class UserController extends Controller
 
 
 
-   public function table()
+   public function games_table()
    {
     //    return 'came';
     $customers=User::where('status','active')->get();
@@ -57,7 +66,11 @@ class UserController extends Controller
     return view('admin.tables.basic_table', compact('customers'));
    }
 
-
+   public function games_history()
+   {
+           $customers=User::where('status','history')->get();
+           return view('admin.tables.basic_table_history', compact('customers'));
+   }
 
 
 
@@ -140,6 +153,20 @@ class UserController extends Controller
    }
 
 
+   public function user_history_destroy($id)
+   {
+    //    dd($id);
+    //    User::destroy(User::findOrFail($id)->user->id);
+
+
+       $customer = User::find($id);
+        $customer->delete();
+        // echo 'user delite';
+        return redirect()->route('games.history');
+
+   }
+
+
 
    public function date_time()
    {
@@ -167,12 +194,16 @@ class UserController extends Controller
                 else{
                 $user->status='history';
                 }
+                $user->save();
 
         }
 
-        if ($users->save()) {
-            return view('admin.dashboard');
-        }
+        $user_history=User::where('status','history')->count();
+        $user_active=User::where('status','active')->count();
+
+
+
+        return view('admin.dashboard', compact('user_active','user_history'));
 
         }
 

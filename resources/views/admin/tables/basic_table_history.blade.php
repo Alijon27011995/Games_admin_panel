@@ -5,147 +5,86 @@
   dashboard
 @endsection
 
+<style>
+ .selection{
+  /* background-color: lightblue;
+  width: 110px;
+  height: 110px; */
+  overflow: auto !important;
+}
+</style>
 @section('content')
 <div class="page-header">
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
-      {{-- <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a  href="{{route('user_table.create')}}" class="badge badge-outline-success">Create New User</a></li>
+      <ol class="breadcrumb">
+        {{-- <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New User</a></li> --}}
         {{-- <li class="breadcrumb-item active" aria-current="page">Basic tables</li> --}}
-      {{-- </ol>  --}}
+      </ol>
     </nav>
 </div>
-<div class="row ">
+<div class="row " >
     <div class="col-12 grid-margin">
-      <div class="card">
+      <div class="card selection">
         <div class="card-body">
-          <h4 class="card-title">Order Status</h4>
+          <h4 class="card-title">Users Table History</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th> Client Name </th>
-                  <th> Order No </th>
-                  <th> Product Cost </th>
-                  <th> Project </th>
-                  <th> Payment Mode </th>
-                  <th> Start Date </th>
-                  <th> Payment Status </th>
+                    <th>#</th>
+                    <th>Games type</th>
+                    <th>Players</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Full Name </th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Create</th>
+                    <th>Status</th>
+                    <th>Options </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <div class="form-check form-check-muted m-0">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <img src="assets/images/faces/face1.jpg" alt="image" />
-                    <span class="pl-2">Henry Klein</span>
-                  </td>
-                  <td> 02312 </td>
-                  <td> $14,500 </td>
-                  <td> Dashboard </td>
-                  <td> Credit card </td>
-                  <td> 04 Dec 2019 </td>
-                  <td>
-                    <div class="badge badge-outline-success">Approved</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check form-check-muted m-0">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <img src="assets/images/faces/face2.jpg" alt="image" />
-                    <span class="pl-2">Estella Bryan</span>
-                  </td>
-                  <td> 02312 </td>
-                  <td> $14,500 </td>
-                  <td> Website </td>
-                  <td> Cash on delivered </td>
-                  <td> 04 Dec 2019 </td>
-                  <td>
-                    <div class="badge badge-outline-warning">Pending</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check form-check-muted m-0">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <img src="assets/images/faces/face5.jpg" alt="image" />
-                    <span class="pl-2">Lucy Abbott</span>
-                  </td>
-                  <td> 02312 </td>
-                  <td> $14,500 </td>
-                  <td> App design </td>
-                  <td> Credit card </td>
-                  <td> 04 Dec 2019 </td>
-                  <td>
-                    <div class="badge badge-outline-danger">Rejected</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check form-check-muted m-0">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <img src="assets/images/faces/face3.jpg" alt="image" />
-                    <span class="pl-2">Peter Gill</span>
-                  </td>
-                  <td> 02312 </td>
-                  <td> $14,500 </td>
-                  <td> Development </td>
-                  <td> Online Payment </td>
-                  <td> 04 Dec 2019 </td>
-                  <td>
-                    <div class="badge badge-outline-success">Approved</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-check form-check-muted m-0">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <img src="assets/images/faces/face4.jpg" alt="image" />
-                    <span class="pl-2">Sallie Reyes</span>
-                  </td>
-                  <td> 02312 </td>
-                  <td> $14,500 </td>
-                  <td> Website </td>
-                  <td> Credit card </td>
-                  <td> 04 Dec 2019 </td>
-                  <td>
-                    <div class="badge badge-outline-success">Approved</div>
-                  </td>
-                </tr>
+                @if ($customers)
+
+                @foreach($customers as $key => $customer)
+                    @if ($customer != null)
+                        <tr>
+                            <td>{{ ($key+1)}}</td>
+                            <td>{{$customer->games_type}}</td>
+                            <td>{{$customer->players}}</td>
+                            <td>{{$customer->date}}</td>
+                            <td>{{$customer->time}}</td>
+                            <td>{{$customer->name}}</td>
+                            <td>{{$customer->phone}}</td>
+                            <td>{{$customer->email}}</td>
+                            <td>{{$customer->created_at}}</td>
+                            <td>
+                                <div class="badge badge-outline-success">{{$customer->status}}</div>
+                            </td>
+                            <td>
+                                <a href="{{route('customer_history.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                    <i  class="icon-md mdi mdi-delete text-danger "></i>
+
+                                </a>
+                            </td>
+
+                        </tr>
+                    @endif
+                @endforeach
+
+                @endif
+
+
+
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 
 @endsection

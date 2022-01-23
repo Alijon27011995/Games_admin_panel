@@ -14,18 +14,9 @@ use Illuminate\Support\Facades\Date;
 class HomeController extends Controller
 {
 
-        public function login_blade()
-    {
-        // return 'ceme';
-        return view('admin.samples.login');
-
-    }
 
 
-    public function games_history()
-    {
-            return view('admin.tables.basic_table_history');
-    }
+
 
 
 }
