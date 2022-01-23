@@ -21,7 +21,7 @@ dashboard
                 <h6 class="text-muted font-weight-normal">the number of players involved in the game</h6>
               </div>
               <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
+                <i class="icon-lg mdi mdi-account-multiple-minus text-primary ml-auto"></i>
               </div>
             </div>
           </div>
@@ -40,7 +40,8 @@ dashboard
                 <h6 class="text-muted font-weight-normal"> number of new players</h6>
               </div>
               <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
-                <i class="icon-lg mdi mdi-wallet-travel text-success ml-auto"></i>
+                <i class="icon-lg mdi mdi-account-plus text-success ml-auto"></i>
+
               </div>
             </div>
           </div>

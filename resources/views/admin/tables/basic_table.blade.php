@@ -6,12 +6,7 @@
 @endsection
 
 <style>
- .selection{
-  /* background-color: lightblue;
-  width: 110px;
-  height: 110px; */
-  overflow: auto !important;
-}
+
 </style>
 @section('content')
 <div class="page-header">
