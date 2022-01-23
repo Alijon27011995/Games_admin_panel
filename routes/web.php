@@ -21,14 +21,6 @@ Route::get('/dashboard','HomeController@dashboard')->name('admin.dashboard');
 Route::match(['get', 'post'],'/users/login', 'HomeController@login_form')->name('user.login');
 
 
-Route::get('/',function () {
-    return view('admin.tables.basic_table');
-});
-
-// Route::match(['get', 'post'], '/dashboard', function () {
-//     return view('admin.dashboard');
-// })->name('admin.dashboard');
-
 Route::match(['get', 'post'],'/user/table/create', 'UserController@create')->name('user.create');
 
 
@@ -42,11 +34,6 @@ Route::get('/user/table/destroy/{id}','UserController@destroy')->name('customers
 
 
 
-// function () {
-
-// })
 
 
-Route::get('/new/user', function () {
-    return view('admin.tables.basic_table_history');
-})->name('add_new.user');
+Route::get('/games/history','HomeController@games_history')->name('games.history');

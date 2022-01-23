@@ -100,7 +100,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('add_new.user')}}">
+            <a class="nav-link" href="{{route('games.history')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
