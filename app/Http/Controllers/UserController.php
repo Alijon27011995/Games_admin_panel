@@ -238,16 +238,23 @@ class UserController extends Controller
 
    public function new_user_api(Request $request)
    {
-    // dd($request->all());
-        $request->validate([
+    $request->validate([
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'players' => 'required',
-            'games_type' => 'required'
+            'games_type' => 'required',
+            'date'=>'required|date_format:mm/dd/yyyy',
+            'time' => 'required|date_format:H:i:s',
         ]);
 
 
+        $users=User::where('status','active')->get();
+        foreach ($users as  $user) {
+            if ($user->date== $request->date && $user->time== $request->time ) {
+                return response('Sorry, there is another player at this time');
+            }
+        }
         $user= new User;
         $user->name=$request->name;
         $user->email=$request->email;
@@ -259,15 +266,10 @@ class UserController extends Controller
         $user->status="active";
         // dd($user);
         if ($user->save()) {
-            return redirect()->route("user.tables");
+            return response($user);
         }
 
    }
-   public function data_time_api(Request $request)
-   {
-
-   }
-
 
 }
 
