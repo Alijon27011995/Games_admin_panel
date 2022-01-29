@@ -107,7 +107,7 @@ class UserController extends Controller
 
     if ($request->method() == 'POST')
     {
-            // dd($request->all());
+            dd($request->all());
             $user= new User;
             $user->name=$request->name;
             $user->email=$request->email;
@@ -249,13 +249,13 @@ class UserController extends Controller
         ]);
 
 
-        $users=User::where('status','active')->get();
-        foreach ($users as  $user) {
-            if ($user->date== $request->date && $user->time== $request->time ) {
-                // return response('');
-                return response()->json(['Sorry, there is another player at this time']);
-            }
-        }
+        // $users=User::where('status','active')->get();
+        // foreach ($users as  $user) {
+        //     if ($user->date== $request->date && $user->time== $request->time ) {
+        //         // return response('');
+        //         return response()->json(['Sorry, there is another player at this time']);
+        //     }
+        // }
         $user= new User;
         $user->name=$request->name;
         $user->email=$request->email;
@@ -266,11 +266,15 @@ class UserController extends Controller
         $user->time=$request->time;
         $user->status="active";
         // dd($user);
-        if ($user->save()) {
-            return response()->json([
-                "results" => $user,
-            ]);
-        }
+        return response()->json([
+            "results" => $user,
+        ]);
+
+        // if ($user->save()) {
+        //     return response()->json([
+        //         "results" => $user,
+        //     ]);
+        // }
 
    }
 
