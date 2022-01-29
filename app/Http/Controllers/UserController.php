@@ -252,7 +252,8 @@ class UserController extends Controller
         $users=User::where('status','active')->get();
         foreach ($users as  $user) {
             if ($user->date== $request->date && $user->time== $request->time ) {
-                return response('Sorry, there is another player at this time');
+                // return response('');
+                return response()->json(['Sorry, there is another player at this time']);
             }
         }
         $user= new User;
@@ -266,7 +267,9 @@ class UserController extends Controller
         $user->status="active";
         // dd($user);
         if ($user->save()) {
-            return response($user);
+            return response()->json([
+                "results" => $user,
+            ]);
         }
 
    }
