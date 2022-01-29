@@ -243,9 +243,9 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'players' => 'required',
-            'games_type' => 'required',
-            'date'=>'required|date_format:mm/dd/yyyy',
-            'time' => 'required|date_format:H:i:s',
+            'games_type' => 'required'
+            // 'date'=>'required|date_format:mm/dd/yyyy',
+            // 'time' => 'required|date_format:H:i:s',
         ]);
 
 
