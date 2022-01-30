@@ -267,7 +267,7 @@ class UserController extends Controller
         $user->status="active";
         // dd($user);
         return response()->json([
-            "results" => $user,
+            "results" => "indoemation came",
         ]);
 
         // if ($user->save()) {
