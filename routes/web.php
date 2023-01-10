@@ -1,6 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Http\Request;
+// use Telegram;
+use Telegram\Bot\Laravel\Facades\Telegram as FacadesTelegram;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +23,28 @@ use Illuminate\Support\Facades\Route;
 
  //================= User Controller =======================
 
+//  Route::post('/dashboard', function() {
+//     FacadesTelegram::sendMessage([
+//         'chat_id' => '989898566',
+//         'text' => 'Hello world!'
+//     ]);
+//     return;
+// });
+
+
+// Route::post('/bot/getupdates', function() {
+//     $updates = FacadesTelegram::getUpdates();
+//     return (json_encode($updates));
+// });
+
+
+
+
 Route::get('/dashboard','UserController@dashboard')->name('admin.dashboard');
 
+// Route::get('/',function{
+// Http::post()
+// });
 
 Route::get('/','UserController@login_blade')->name('admin.login');
 

@@ -92,7 +92,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Games</span>
+              <span class="menu-title">Product</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -100,7 +100,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Games History</span>
+              <span class="menu-title">Orders</span>
             </a>
           </li>
 

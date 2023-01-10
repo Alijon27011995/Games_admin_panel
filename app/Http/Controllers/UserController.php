@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests;
+use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 // use GuzzleHttp\Psr7\Request;
 
@@ -23,7 +26,13 @@ class UserController extends Controller
 
     public function dashboard()
     {
-           return $this->date_time();
+
+        // $telegram = new Telegram('5821152915:AAFPdJD14rXycN--lw4gkPyzc6KdSkD-3B4');
+        // // dd($telegram);
+        // $chat_id = $telegram->ChatID(989898566);
+        // $content = array('chat_id' => $chat_id, 'text' => 'Test');
+        // $telegram->sendMessage($content);
+        //    return $this->date_time();
     }
 
 
@@ -95,6 +104,9 @@ class UserController extends Controller
 
    public function games_history()
    {
+            $orders=Order::get();
+            // dd($orders->user);
+            
            $customers=User::where('status','history')->get();
            return view('admin.tables.basic_table_history', compact('customers'));
    }
