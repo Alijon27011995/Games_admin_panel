@@ -109,8 +109,8 @@
                 <div class="form-group">
                     <label for="exampleInputPassword4">Games</label>
                     <select id="games" name="games" class="form-control">
-                        <option name="game_one"   value="game_one" id="game_one"  value="game_one"  class="form-control">game_one</option>
-                        <option name="game_two"   value="game_two" id="game_two" value="game_two" class="form-control">game_two</option>
+                        <option name="sister"   value="sister" id="sister"  value="sister"  class="form-control">sister</option>
+                        <option name="psycho"   value="psycho" id="psycho" value="psycho" class="form-control">psycho</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary float-right mr-2">Save</button>

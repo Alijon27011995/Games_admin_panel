@@ -119,7 +119,7 @@ class UserController extends Controller
 
     if ($request->method() == 'POST')
     {
-            // dd($request->all());
+            dd($request->all());
             $user= new User;
             $user->name=$request->name;
             $user->email=$request->email;
@@ -255,18 +255,19 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'players' => 'required',
-            'games_type' => 'required',
-            'date'=>'required|date_format:mm/dd/yyyy',
-            'time' => 'required|date_format:H:i:s',
+            'games_type' => 'required'
+            // 'date'=>'required|date_format:mm/dd/yyyy',
+            // 'time' => 'required|date_format:H:i:s',
         ]);
 
 
-        $users=User::where('status','active')->get();
-        foreach ($users as  $user) {
-            if ($user->date== $request->date && $user->time== $request->time ) {
-                return response('Sorry, there is another player at this time');
-            }
-        }
+        // $users=User::where('status','active')->get();
+        // foreach ($users as  $user) {
+        //     if ($user->date== $request->date && $user->time== $request->time ) {
+        //         // return response('');
+        //         return response()->json(['Sorry, there is another player at this time']);
+        //     }
+        // }
         $user= new User;
         $user->name=$request->name;
         $user->email=$request->email;
@@ -277,9 +278,15 @@ class UserController extends Controller
         $user->time=$request->time;
         $user->status="active";
         // dd($user);
-        if ($user->save()) {
-            return response($user);
-        }
+        return response()->json([
+            "results" => "indoemation came",
+        ]);
+
+        // if ($user->save()) {
+        //     return response()->json([
+        //         "results" => $user,
+        //     ]);
+        // }
 
    }
 
