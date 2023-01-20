@@ -96,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('games.history')}}">
+            <a class="nav-link" href="{{route('orders.list')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>

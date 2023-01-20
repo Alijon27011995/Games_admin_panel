@@ -18,6 +18,7 @@
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New Product</a></li>
       </ol>
     </nav>
 </div>
@@ -25,39 +26,30 @@
     <div class="col-12 grid-margin">
       <div class="card selection">
         <div class="card-body">
-          <h4 class="card-title">Orders Table History</h4>
+          <h4 class="card-title">Products</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                     <th>#</th>
-                    <th>Order Id</th>
+                    <th>Slug</th>
                     <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>User Name</th>
-                    <th>user phone</th>
-                    <th>address</th>
+                    <th>Price</th>
                     <th>Date</th>
                 </tr>
               </thead>
               <tbody>
-                @if ($list)
+                @if ($products)
 
-                @foreach($list as $key => $order)
-                    @if ($order != null)
-                    {{-- @dd($order['code']) --}}
+                @foreach($products as $key => $product)
+                    @if ($product != null)
+                    {{-- @dd($product['code']) --}}
                         <tr>
                             <td>{{ ($key+1)}}</td>
-                            <td>{{$order['code']}}</td>
-                            <td>{{$order['product_name']}}</td>
-                            <td>{{$order['product_quantity']}}</td>
-                            <td>{{$order['user_name']}}</td>
-                            <td>{{$order['user_phone']}}</td>
-                            <td>{{$order['adrress']}}</td>
-                            <td>{{$order['date']}}</td>
-                            {{-- <td>
-                                <div class="badge badge-outline-warning">{{$order->status}}</div>
-                            </td> --}}
+                            <td>{{$product->slug}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->created_at}}</td>
                         </tr>
                     @endif
                 @endforeach

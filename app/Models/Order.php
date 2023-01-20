@@ -19,9 +19,9 @@ class Order extends Model
     }
     public function user()
     {
-        dd($this);
+        // dd($this);
         return $this;
-        return $this->hasMany(OrderDetail::class);
+        // return $this->hasMany(OrderDetail::class);
         // return $this->belongsTo(User::class);
     }
 }

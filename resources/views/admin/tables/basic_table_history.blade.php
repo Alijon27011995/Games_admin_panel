@@ -25,46 +25,43 @@
     <div class="col-12 grid-margin">
       <div class="card selection">
         <div class="card-body">
-          <h4 class="card-title">Users Table History</h4>
+          <h4 class="card-title">Orders Table History</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                     <th>#</th>
-                    <th>Games type</th>
-                    <th>Players</th>
+                    <th>Order_id</th>
+                    <th>User Name</th>
+                    <th>user phone</th>
                     <th>Date</th>
-                    <th>Time</th>
-                    <th>Full Name </th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Create</th>
-                    <th>Status</th>
                     <th>Options </th>
                 </tr>
               </thead>
               <tbody>
-                @if ($customers)
+                @if ($orders)
 
-                @foreach($customers as $key => $customer)
-                    @if ($customer != null)
+                @foreach($orders as $key => $order)
+                    @if ($order != null)
                         <tr>
                             <td>{{ ($key+1)}}</td>
-                            <td>{{$customer->games_type}}</td>
-                            <td>{{$customer->players}}</td>
-                            <td>{{$customer->date}}</td>
-                            <td>{{$customer->time}}</td>
-                            <td>{{$customer->name}}</td>
-                            <td>{{$customer->phone}}</td>
-                            <td>{{$customer->email}}</td>
-                            <td>{{$customer->created_at}}</td>
+                            <td>{{$order->code}}</td>
+                            {{-- <td>{{$order->created_at}}</td> --}}
+                            {{-- <td>{{$order->date}}</td> --}}
+                            {{-- <td>{{$order->time}}</td> --}}
+                            <td>{{$order->name}}</td>
+                            <td>{{$order->phone}}</td>
+                            {{-- <td>{{$order->email}}</td> --}}
+                            <td>{{$order->created_at}}</td>
+                            {{-- <td>
+                                <div class="badge badge-outline-warning">{{$order->status}}</div>
+                            </td> --}}
                             <td>
-                                <div class="badge badge-outline-warning">{{$customer->status}}</div>
-                            </td>
-                            <td>
-                                <a href="{{route('customer_history.destroy', $customer->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('order.show', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                    <i  class="icon-md mdi mdi-eye text-primary "></i>
+                                </a>
+                                <a href="{{route('customer_history.destroy', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
                                     <i  class="icon-md mdi mdi-delete text-danger "></i>
-
                                 </a>
                             </td>
 

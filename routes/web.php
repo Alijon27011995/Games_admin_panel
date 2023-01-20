@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 // use Telegram;
 use Telegram\Bot\Laravel\Facades\Telegram as FacadesTelegram;
@@ -56,7 +56,12 @@ Route::match(['get', 'post'],'/user/table/create', 'UserController@create')->nam
 
 
 Route::get('/games/table','UserController@games_table')->name('user.tables');
-Route::get('/games/history','UserController@games_history')->name('games.history');
+
+Route::get('/orders','OrderController@index')->name('orders.list');
+Route::get('/order/show/{id}','OrderController@orderShow')->name('order.show');
+
+// Route::get('/order/history','OrderController@games_history')->name('games.history');
+
 
 
 

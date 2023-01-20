@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
@@ -68,45 +69,17 @@ class UserController extends Controller
 
    public function games_table()
    {
-    //    return 'came';
-
-        $tz = new DateTimeZone('Asia/tashkent');
-        $mytime = Carbon::now($tz);
-        $date=date($mytime->toDateString());
-        $time=date($mytime->toTimeString());
 
 
-        $users=User::where('status','active')->get();
-        //    dd($users);
-        foreach ($users as  $user) {
-            //    dd($user);
-                if ($user->date >= $date) {
-                    if ($user->date > $date) {
-                        $user->status='active';
-                    }
-                    elseif($user->date == $date && $user->time > $time){
-                        $user->status='active';
-                    }
-                    elseif ($user->date == $date && $user->time < $time) {
-                        $user->status='history';
-                    }
-                }
-                else{
-                $user->status='history';
-                }
-                $user->save();
-
-        }
-
-        $customers=User::where('status','active')->get();
-        return view('admin.tables.basic_table', compact('customers'));
+        $products=Product::get();
+        return view('admin.tables.product', compact('products'));
    }
 
    public function games_history()
    {
             $orders=Order::get();
             // dd($orders->user);
-            
+
            $customers=User::where('status','history')->get();
            return view('admin.tables.basic_table_history', compact('customers'));
    }
