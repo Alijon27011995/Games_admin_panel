@@ -33,6 +33,7 @@
                     <th>#</th>
                     <th>Order Id</th>
                     <th>Product Name</th>
+                    <th>Product Foto</th>
                     <th>Quantity</th>
                     <th>User Name</th>
                     <th>user phone</th>
@@ -50,6 +51,12 @@
                             <td>{{ ($key+1)}}</td>
                             <td>{{$order['code']}}</td>
                             <td>{{$order['product_name']}}</td>
+                            <td>
+                                <div >
+                                    <img style="width: 40px; height:40px" class="language_selected" src="{{asset('uploads/fotos/rus.jpg')}}" alt="" >
+                                    {{$order['product_foto']}}
+                                </div>
+                            </td>
                             <td>{{$order['product_quantity']}}</td>
                             <td>{{$order['user_name']}}</td>
                             <td>{{$order['user_phone']}}</td>
