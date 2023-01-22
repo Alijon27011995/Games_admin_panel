@@ -10,7 +10,11 @@
   /* background-color: lightblue;
   width: 110px;
   height: 110px; */
-  overflow: auto !important;
+  /* overflow: auto !important; */
+}
+.img{
+    width: 100px !important;
+    height: 100px !important;
 }
 </style>
 @section('content')
@@ -46,7 +50,10 @@
                     {{-- @dd($product['code']) --}}
                         <tr>
                             <td>{{ ($key+1)}}</td>
-                            <td>{{$product->slug}}</td>
+                            <td>
+                                <img class="img" src="{{ url('uploads/fotos/'.$product->slug) }}">
+                                {{-- {{$product->slug}} --}}
+                            </td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->created_at}}</td>
@@ -55,8 +62,6 @@
                 @endforeach
 
                 @endif
-
-
 
               </tbody>
             </table>

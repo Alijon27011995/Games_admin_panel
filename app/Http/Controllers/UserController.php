@@ -10,6 +10,10 @@ use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Telegram\Bot\Laravel\Facades\Telegram;
+// use File;
+use Symfony\Component\HttpFoundation\File;
+
+// namespace App\Http\Controllers;
 
 // use GuzzleHttp\Psr7\Request;
 
@@ -75,48 +79,42 @@ class UserController extends Controller
         return view('admin.tables.product', compact('products'));
    }
 
-   public function games_history()
-   {
-            $orders=Order::get();
-            // dd($orders->user);
+//    public function games_history()
+//    {
+//             $orders=Order::get();
+//             // dd($orders->user);
 
-           $customers=User::where('status','history')->get();
-           return view('admin.tables.basic_table_history', compact('customers'));
-   }
+//            $customers=User::where('status','history')->get();
+//            return view('admin.tables.basic_table_history', compact('customers'));
+//    }
 
 
 
    public function create(Request $request)
    {
 
-
     if ($request->method() == 'POST')
     {
-            dd($request->all());
-            $user= new User;
-            $user->name=$request->name;
-            $user->email=$request->email;
-            $user->phone=$request->phone_number;
-            $user->players=$request->players;
-            $user->games_type=$request->games;
-            $user->date=$request->date;
-            $user->time=$request->time;
-            $user->status="active";
-            // dd($user);
-            if ($user->save()) {
-                return redirect()->route("user.tables");
-            }
 
+        // $request->validate([
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        $filename = time() . '.'. $request->fotos->extension();
+        $path=public_path('uploads/fotos/');
+        // dd($path.$filename);
+        $request->fotos->move($path, $filename);
+        // dd($filename);
+
+
+       $product=Product::create([
+          'name'=>$request->name,
+          'price'=>$request->price,
+          'slug'=>$filename,
+       ]);
+    //    dd($product);
+    return redirect()->route("user.tables");
     }
-    else
-    {
         return view('admin.forms.basic_elements');
-    }
-
-
-
-
-    //    return 'came';
 
    }
    public function edit($id)

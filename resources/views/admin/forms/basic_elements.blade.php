@@ -28,7 +28,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Create Product</h4>
-            <form method="POST" action="{{ route('user.create') }}">
+            <form method="POST" action="{{ route('user.create') }}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="form-group">
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label for="exampleInputPassword4">Fotos</label>
                     {{-- <input type="" name=""  style="display:none"> --}}
-                    <input name="fotos"  type="file" class="form-control" id="exampleInputPassword4" placeholder="Password" required enctype="multipart/form-data"x>
+                    <input name="fotos"  type="file" enctype="multipart/form-data" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary float-right mr-2">Save</button>
