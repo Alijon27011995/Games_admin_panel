@@ -55,9 +55,16 @@ Route::match(['get', 'post'],'/users/login', 'UserController@login_form')->name(
 Route::match(['get', 'post'],'/user/table/create', 'UserController@create')->name('user.create');
 
 
+
 Route::get('/games/table','UserController@games_table')->name('user.tables');
 
 Route::get('/orders','OrderController@index')->name('orders.list');
+Route::get('/order/show/{id}','OrderController@orderShow')->name('order.show');
+
+
+Route::get('/categories','CategoryController@index')->name('categories.list');
+Route::match(['get', 'post'],'/category/table/create', 'CategoryController@create')->name('category.create');
+
 Route::get('/order/show/{id}','OrderController@orderShow')->name('order.show');
 
 // Route::get('/order/history','OrderController@games_history')->name('games.history');

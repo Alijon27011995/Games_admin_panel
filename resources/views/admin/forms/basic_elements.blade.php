@@ -31,20 +31,72 @@
             <form method="POST" action="{{ route('user.create') }}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-                <div class="form-group">
-                    {{-- @dd($user) --}}
-                    <label for="exampleInputName1"> Product Name</label>
-                    <input name="name"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail3">Price</label>
-                    <input name="price"  type="number" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword4">Fotos</label>
-                    {{-- <input type="" name=""  style="display:none"> --}}
-                    <input name="fotos"  type="file" enctype="multipart/form-data" required>
-                </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Product Name Ru </label>
+                            <input name="name"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Product Name Uz </label>
+                            <input name="name"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                   <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Price</label>
+                            <input name="price"  type="number" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
+                        </div>
+                   </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                         <div class="form-group">
+                            <label for="exampleInputEmail3">Select Category</label>
+                            <select class="form-control">
+                                {{-- @foreach (json_decode($element->options) as $value)
+                                    <option value="{{ $value }}">{{ $value }}</option>
+                                @endforeach --}}
+                                <option value="aaa">aaa</option>
+                            </select>
+                         </div>
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Description Ru </label>
+                           <textarea id="w3review" name="w3review" class="form-control" style="height: 80px">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Description Uz </label>
+                           <textarea id="w3review" name="w3review" class="form-control" style="height: 80px">
+                            </textarea>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputPassword4" class="m-2">Fotos</label>
+                            {{-- <input type="" name=""  style="display:none"> --}}
+                            <input name="fotos"  type="file" enctype="multipart/form-data" required>
+
+                        </div>
+                    </div>
+                  </div>
 
                 <button type="submit" class="btn btn-primary float-right mr-2">Save</button>
                 {{-- <button class="btn btn-dark">Cancel</button> --}}

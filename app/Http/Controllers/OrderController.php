@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\ProductRu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -33,7 +34,7 @@ class OrderController extends Controller
         // dd($product);
         $list=[];
         foreach ($order_datails as $order_datail) {
-            $product=Product::where('id',$order_datail->product_id)->first();
+            $product=ProductRu::where('id',$order_datail->product_id)->first();
             $data=[
                 'code'=>$order->code,
                 'date'=>$order->created_at,

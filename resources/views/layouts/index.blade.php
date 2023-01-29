@@ -103,6 +103,14 @@
               <span class="menu-title">Orders</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{route('categories.list')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Categories</span>
+            </a>
+          </li>
 
         </ul>
       </nav>

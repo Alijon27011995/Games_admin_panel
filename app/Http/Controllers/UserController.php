@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductRu;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
@@ -32,12 +33,7 @@ class UserController extends Controller
     public function dashboard()
     {
 
-        // $telegram = new Telegram('5821152915:AAFPdJD14rXycN--lw4gkPyzc6KdSkD-3B4');
-        // // dd($telegram);
-        // $chat_id = $telegram->ChatID(989898566);
-        // $content = array('chat_id' => $chat_id, 'text' => 'Test');
-        // $telegram->sendMessage($content);
-        //    return $this->date_time();
+
     }
 
 
@@ -75,7 +71,7 @@ class UserController extends Controller
    {
 
 
-        $products=Product::get();
+        $products=ProductRu::get();
         return view('admin.tables.product', compact('products'));
    }
 
@@ -106,7 +102,7 @@ class UserController extends Controller
         // dd($filename);
 
 
-       $product=Product::create([
+       $product=ProductRu::create([
           'name'=>$request->name,
           'price'=>$request->price,
           'slug'=>$filename,
@@ -168,10 +164,10 @@ class UserController extends Controller
     //    User::destroy(User::findOrFail($id)->user->id);
 
 
-       $customer = User::find($id);
+       $customer = Order::find($id);
         $customer->delete();
         // echo 'user delite';
-        return redirect()->route('games.history');
+        return redirect()->route('orders.list');
 
    }
 
