@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
-
+        return $this->date_time();
 
     }
 

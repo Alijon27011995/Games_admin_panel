@@ -51,15 +51,41 @@
                         </div>
                     </div>
                   </div>
+
+
+                  <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="exampleInputPassword4" class="m-2">Fotos</label>
+                            {{-- <input type="" name=""  style="display:none"> --}}
+                            {{-- <input name="fotos"  type="file" enctype="multipart/form-data" required> --}}
+
+                            <img class="box"  src="{{ url('uploads/fotos/'.$category_ru->foto) }}">
+
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="exampleInputPassword4" class="m-2"> New Fotos</label>
+                            {{-- <input type="" name=""  style="display:none"> --}}
+                            <input name="fotos"  type="file" enctype="multipart/form-data" required>
+                    </div>
+                    </div>
+              </div>
+
+
+
+{{--
                   <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputPassword4" class="m-2">Fotos</label>
-                            {{-- <input type="" name=""  style="display:none"> --}}
+
                             <input name="fotos"  type="file" enctype="multipart/form-data" required>
                         </div>
                     </div>
-                  </div>
+                  </div> --}}
+
 
                 <button type="submit" class="btn btn-primary float-right mr-2">Save</button>
                 {{-- <button class="btn btn-dark">Cancel</button> --}}

@@ -38,43 +38,44 @@
                 </tr>
               </thead>
               <tbody>
-                @if ($orders)
+                    @if ($orders)
 
-                @foreach($orders as $key => $order)
-                    @if ($order != null)
-                        <tr>
-                            <td>{{ ($key+1)}}</td>
-                            <td>{{$order->code}}</td>
-                            {{-- <td>{{$order->created_at}}</td> --}}
-                            {{-- <td>{{$order->date}}</td> --}}
-                            {{-- <td>{{$order->time}}</td> --}}
-                            <td>{{$order->name}}</td>
-                            <td>{{$order->phone}}</td>
-                            {{-- <td>{{$order->email}}</td> --}}
-                            <td>{{$order->created_at}}</td>
-                            {{-- <td>
-                                <div class="badge badge-outline-warning">{{$order->status}}</div>
-                            </td> --}}
-                            <td>
-                                <a href="{{route('order.show', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
-                                    <i  class="icon-md mdi mdi-eye text-primary "></i>
-                                </a>
-                                {{-- <a href="{{route('customer_history.destroy', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
-                                    <i  class="icon-md mdi mdi-delete text-danger "></i>
-                                </a> --}}
-                            </td>
+                        @foreach($orders as $key => $order)
+                            @if ($order != null)
+                                <tr>
+                                    <td>{{ ($key+1)}}</td>
+                                    <td>{{$order->code}}</td>
+                                    {{-- <td>{{$order->created_at}}</td> --}}
+                                    {{-- <td>{{$order->date}}</td> --}}
+                                    {{-- <td>{{$order->time}}</td> --}}
+                                    <td>{{$order->name}}</td>
+                                    <td>{{$order->phone}}</td>
+                                    {{-- <td>{{$order->email}}</td> --}}
+                                    <td>{{$order->created_at}}</td>
+                                    {{-- <td>
+                                        <div class="badge badge-outline-warning">{{$order->status}}</div>
+                                    </td> --}}
+                                    <td>
+                                        <a href="{{route('order.show', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                            <i  class="icon-md mdi mdi-eye text-primary "></i>
+                                        </a>
+                                        {{-- <a href="{{route('customer_history.destroy', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                            <i  class="icon-md mdi mdi-delete text-danger "></i>
+                                        </a> --}}
+                                    </td>
 
-                        </tr>
+                                </tr>
+                            @endif
+                        @endforeach
+
                     @endif
-                @endforeach
-
-                @endif
-
-
 
               </tbody>
             </table>
           </div>
+          <div class="aiz-pagination">
+            {{ $orders->appends(request()->input())->links() }}
+        </div>
         </div>
       </div>
     </div>

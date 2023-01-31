@@ -15,10 +15,21 @@ class OrderController extends Controller
 {
     public function index(){
         // dd('came');
+
+        // $sort_search =null;
+        // $brands = Brand::orderBy('name', 'asc');
+        // if ($request->has('search')){
+        //     $sort_search = $request->search;
+        //     $brands = $brands->where('name', 'like', '%'.$sort_search.'%');
+        // }
+        // $brands = $brands->paginate(100);
+
+
+
         $orders = DB::table('orders')
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->select('orders.*', 'users.phone', 'users.name')
-            ->get();
+            ->paginate(10);
        return view('admin.tables.basic_table_history', compact('orders'));
 
     }
