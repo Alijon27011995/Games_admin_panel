@@ -88,7 +88,7 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route('user.tables')}}">
+            <a class="nav-link" href="{{route('product.tables')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>

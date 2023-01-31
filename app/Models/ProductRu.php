@@ -11,6 +11,8 @@ class ProductRu extends Model
     protected $fillable = [
         'name',
         'foto',
-        'price'
+        'price',
+        'category_id',
+        'description'
     ];
 }

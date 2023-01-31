@@ -12,6 +12,10 @@
   height: 110px; */
   overflow: auto !important;
 }
+.img{
+    width: 100px !important;
+    height: 100px !important;
+}
 </style>
 @section('content')
 <div class="page-header">
@@ -53,8 +57,9 @@
                             <td>{{$order['product_name']}}</td>
                             <td>
                                 <div >
-                                    <img style="width: 40px; height:40px" class="language_selected" src="{{asset('uploads/fotos/rus.jpg')}}" alt="" >
-                                    {{$order['product_foto']}}
+                                    <img class="img"  src="{{ url('uploads/fotos/'.$order['product_foto']) }}">
+                                    {{-- <img style="width: 40px; height:40px" class="language_selected" src="{{asset('uploads/fotos/rus.jpg')}}" alt="" > --}}
+                                    {{-- {{}} --}}
                                 </div>
                             </td>
                             <td>{{$order['product_quantity']}}</td>

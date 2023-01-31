@@ -59,9 +59,9 @@
                                 <a href="{{route('order.show', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
                                     <i  class="icon-md mdi mdi-eye text-primary "></i>
                                 </a>
-                                <a href="{{route('customer_history.destroy', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                {{-- <a href="{{route('customer_history.destroy', $order->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
                                     <i  class="icon-md mdi mdi-delete text-danger "></i>
-                                </a>
+                                </a> --}}
                             </td>
 
                         </tr>

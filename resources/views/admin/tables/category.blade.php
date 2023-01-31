@@ -22,7 +22,7 @@
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a  href="{{route('category.create')}}" class="badge badge-outline-success">Create New Product</a></li>
+        <li class="breadcrumb-item"><a  href="{{route('category.create')}}" class="badge badge-outline-success">Create New Category</a></li>
       </ol>
     </nav>
 </div>
@@ -56,10 +56,10 @@
                             <td>{{$category->name}}</td>
                             <td>{{$category->created_at}}</td>
                             <td>
-                                <a href="{{route('order.show', $category->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('category.edit', $category->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
                                     <i  class="icon-md mdi mdi-table-edit  text-primary "></i>
                                 </a>
-                                <a href="{{route('customer_history.destroy', $category->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('category.destroy', $category->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
                                     <i  class="icon-md mdi mdi-delete text-danger "></i>
                                 </a>
                             </td>

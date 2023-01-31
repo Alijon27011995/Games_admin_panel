@@ -52,20 +52,20 @@
                         <tr>
                             <td>{{ ($key+1)}}</td>
                             <td>
-                                <img class="img" src="{{ url('uploads/fotos/'.$product->foto) }}">
+                                <img class="img"  src="{{ url('uploads/fotos/'.$product->foto) }}">
                                 {{-- {{$product->slug}} --}}
                             </td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->created_at}}</td>
                             <td>
-                                <a href="{{route('order.show', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('product.show', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="show">
                                     <i  class="icon-md mdi mdi-eye text-primary "></i>
                                 </a>
-                                <a href="{{route('order.show', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('product.edit', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="edit">
                                     <i  class="icon-md mdi mdi-table-edit  text-primary "></i>
                                 </a>
-                                <a href="{{route('customer_history.destroy', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
+                                <a href="{{route('product.destroy', $product->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="delete">
                                     <i  class="icon-md mdi mdi-delete text-danger "></i>
                                 </a>
                             </td>

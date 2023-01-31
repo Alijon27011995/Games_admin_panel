@@ -51,19 +51,27 @@ Route::get('/','UserController@login_blade')->name('admin.login');
 Route::match(['get', 'post'],'/users/login', 'UserController@login_form')->name('user.login');
 
 
+//  product
+Route::get('/product/table','UserController@productTable')->name('product.tables');
+Route::match(['get', 'post'],'/product/table/create', 'UserController@create')->name('user.create');
+Route::get('/product/show/{id}','UserController@productShow')->name('product.show');
+Route::get('/product/table/edit/{id}','UserController@productEdit')->name('product.edit');
+Route::post('/product/table/update','UserController@productUpdate')->name('product.update');
+Route::get('/product/table/destroy/{id}','UserController@productDestroy')->name('product.destroy');
 
-Route::match(['get', 'post'],'/user/table/create', 'UserController@create')->name('user.create');
 
-
-
-Route::get('/games/table','UserController@games_table')->name('user.tables');
-
+// order
 Route::get('/orders','OrderController@index')->name('orders.list');
 Route::get('/order/show/{id}','OrderController@orderShow')->name('order.show');
 
-
+// category
 Route::get('/categories','CategoryController@index')->name('categories.list');
 Route::match(['get', 'post'],'/category/table/create', 'CategoryController@create')->name('category.create');
+Route::get('/category/table/edit/{id}','CategoryController@edit')->name('category.edit');
+Route::post('/category/table/update','CategoryController@update')->name('category.update');
+Route::get('/category/table/destroy/{id}','CategoryController@destroy')->name('category.destroy');
+
+
 
 Route::get('/order/show/{id}','OrderController@orderShow')->name('order.show');
 

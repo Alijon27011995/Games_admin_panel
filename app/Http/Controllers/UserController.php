@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests;
+use App\Models\CategoryRu;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductRu;
+use App\Models\ProductUz;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
@@ -67,7 +69,7 @@ class UserController extends Controller
 
 
 
-   public function games_table()
+   public function productTable()
    {
 
 
@@ -91,7 +93,7 @@ class UserController extends Controller
 
     if ($request->method() == 'POST')
     {
-
+        // dd($request->all());
         // $request->validate([
         //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
@@ -103,16 +105,128 @@ class UserController extends Controller
 
 
        $product=ProductRu::create([
-          'name'=>$request->name,
+          'name'=>$request->name_ru,
           'price'=>$request->price,
-          'slug'=>$filename,
+          'foto'=>$filename,
+          'category_id'=>$request->category_id,
+          'description'=>$request->description_ru
        ]);
+       $product=ProductUz::create([
+        'name'=>$request->name_uz,
+        'price'=>$request->price,
+        'foto'=>$filename,
+        'category_id'=>$request->category_id,
+        'description'=>$request->description_uz,
+     ]);
     //    dd($product);
-    return redirect()->route("user.tables");
+    return redirect()->route("product.tables");
     }
-        return view('admin.forms.basic_elements');
+       $categories=CategoryRu::pluck('name','id');
+    //    dd($categories);
+        return view('admin.forms.basic_elements', compact('categories'));
 
    }
+
+
+
+
+
+   public function productShow($id)
+   {
+
+
+    $product_ru=ProductRu::where('id',$id)->first();
+    $product_uz=ProductUz::where('id',$id)->first();
+    $category=CategoryRu::where('id',$product_ru->category_id)->first();
+
+
+    //    dd($id);
+    //    return 'came';
+    return view('admin.forms.product_show',compact('product_ru','product_uz','category'));
+   }
+
+
+
+
+   public function productEdit($id)
+   {
+
+
+    $product_ru=ProductRu::where('id',$id)->first();
+    $product_uz=ProductUz::where('id',$id)->first();
+    $category=CategoryRu::where('id',$product_ru->category_id)->first();
+    $categories=CategoryRu::pluck('name','id');
+
+
+
+    //    dd($id);
+    //    return 'came';
+    return view('admin.forms.product_edit',compact('product_ru','product_uz','category','categories'));
+   }
+
+
+
+
+
+   public function productUpdate(Request $request, CategoryRu $categoryRu)
+   {
+
+    //    dd($request->all());
+
+       $filename = time() . '.'. $request->fotos->extension();
+        $path=public_path('uploads/fotos/');
+        // dd($path.$filename);
+        $request->fotos->move($path, $filename);
+
+        $product_ru=ProductRu::where('id',$request->product_id)->first();
+        $product_uz=ProductUz::where('id',$request->product_id)->first();
+
+        $product_ru->name=$request->name_ru;
+        $product_ru->foto=$filename;
+        $product_ru->description=$request->description_ru;
+        $product_ru->category_id=$request->category_id;
+
+
+
+        $product_uz->name=$request->name_uz;
+        $product_uz->foto=$filename;
+        $product_uz->description=$request->description_uz;
+        $product_uz->category_id=$request->category_id;
+
+
+        $product_ru->save();
+        $product_uz->save();
+        return redirect()->route("product.tables");
+       // dd($user);
+       // if ($user->save()) {
+       // }
+
+   }
+
+
+
+   public function productDestroy($id)
+   {
+    //    dd($id);
+    //    User::destroy(User::findOrFail($id)->user->id);
+
+
+    $customer_ru = ProductRu::find($id);
+    $customer_uz = ProductUz::find($id);
+    $customer_ru->delete();
+    $customer_uz->delete();
+    // echo 'user delite';
+    return redirect()->route('product.tables');
+
+   }
+
+
+
+
+
+
+
+
    public function edit($id)
    {
 
@@ -122,6 +236,7 @@ class UserController extends Controller
     //    return 'came';
     return view('admin.forms.basic_elements_update',compact('user'));
    }
+
 
    public function update(Request $request)
    {
