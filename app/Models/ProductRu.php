@@ -9,10 +9,14 @@ class ProductRu extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'product_name_uz',
+        'product_name_ru',
         'foto',
         'price',
         'category_id',
-        'description'
+        'description_ru',
+        'description_uz',
+        'soft_delete',
+        'parent_id'
     ];
 }

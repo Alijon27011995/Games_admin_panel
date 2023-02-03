@@ -40,14 +40,14 @@
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Category Name Ru </label>
-                            <input name="name_ru" value="{{$category_ru->name?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Category Name Ru" required>
+                            <input name="name_ru" value="{{$category_ru->category_name_ru?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Category Name Ru" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             {{-- @dd($category) --}}
                             <label for="exampleInputName1"> Categoory Name Uz </label>
-                            <input name="name_uz" value ="{{$category_uz->name?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Category Name Uz" required>
+                            <input name="name_uz" value ="{{$category_ru->category_name_uz?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Category Name Uz" required>
                         </div>
                     </div>
                   </div>

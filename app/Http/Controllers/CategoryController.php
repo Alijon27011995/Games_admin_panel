@@ -55,14 +55,15 @@ class CategoryController extends Controller
          // dd($filename);
 
 
-        $product=CategoryRu::create([
-           'name'=>$request->name_ru,
+        CategoryRu::create([
+           'category_name_ru'=>$request->name_ru,
+           'category_name_uz'=>$request->name_uz,
            'foto'=>$filename,
         ]);
-        $product=CategoryUz::create([
-            'name'=>$request->name_uz,
-            'foto'=>$filename,
-         ]);
+        // $product=CategoryUz::create([
+        //     'name'=>$request->name_uz,
+        //     'foto'=>$filename,
+        //  ]);
      //    dd($product);
      return redirect()->route("categories.list");
      }
@@ -105,11 +106,11 @@ class CategoryController extends Controller
 
 
     $category_ru=CategoryRu::where('id',$id)->first();
-    $category_uz=CategoryUz::where('id',$id)->first();
+    // $category_uz=CategoryUz::where('id',$id)->first();
 
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.category_edit',compact('category_ru','category_uz'));
+    return view('admin.forms.category_edit',compact('category_ru'));
    }
     }
 
@@ -131,14 +132,14 @@ class CategoryController extends Controller
         $request->fotos->move($path, $filename);
 
         $category_ru=CategoryRu::where('id',$request->category_id)->first();
-        $category_uz=CategoryUz::where('id',$request->category_id)->first();
+        // $category_uz=CategoryUz::where('id',$request->category_id)->first();
 
-        $category_ru->name=$request->name_ru;
+        $category_ru->category_name_ru=$request->name_ru;
         $category_ru->foto=$filename;
-        $category_uz->name=$request->name_uz;
-        $category_uz->foto=$filename;
+        $category_ru->category_name_uz=$request->name_uz;
+        // $category_uz->foto=$filename;
         $category_ru->save();
-        $category_uz->save();
+        // $category_uz->save();
         return redirect()->route("categories.list");
         // dd($user);
         // if ($user->save()) {
@@ -154,10 +155,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $customer_ru = CategoryRu::find($id);
-        $customer_uz = CategoryUz::find($id);
-        $customer_ru->delete();
-        $customer_uz->delete();
+        $category_ru = CategoryRu::find($id);
+        // $customer_uz = CategoryUz::find($id);
+        $product_rus=ProductRu::where('category_id',$category_ru->id)->get();
+        foreach ($product_rus as $product_ru) {
+            $product_ru->soft_delete='active';
+            $product_ru->save();
+        }
+        $category_ru->delete();
+        // $customer_uz->delete();
         // echo 'user delite';
         return redirect()->route('categories.list');
     }

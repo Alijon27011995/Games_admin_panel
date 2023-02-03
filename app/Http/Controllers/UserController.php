@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Telegram\Bot\Laravel\Facades\Telegram;
 // use File;
@@ -73,7 +74,7 @@ class UserController extends Controller
    {
 
 
-        $products=ProductRu::get();
+        $products=ProductRu::where('soft_delete',null)->get();
         return view('admin.tables.product', compact('products'));
    }
 
@@ -105,23 +106,25 @@ class UserController extends Controller
 
 
        $product=ProductRu::create([
-          'name'=>$request->name_ru,
+          'product_name_ru'=>$request->name_ru,
+          'product_name_uz'=>$request->name_uz,
           'price'=>$request->price,
           'foto'=>$filename,
           'category_id'=>$request->category_id,
           'description'=>$request->description_ru
        ]);
-       $product=ProductUz::create([
-        'name'=>$request->name_uz,
-        'price'=>$request->price,
-        'foto'=>$filename,
-        'category_id'=>$request->category_id,
-        'description'=>$request->description_uz,
-     ]);
+    //    dd($product);
+    //    $product=ProductUz::create([
+    //     'name'=>$request->name_uz,
+    //     'price'=>$request->price,
+    //     'foto'=>$filename,
+    //     'category_id'=>$request->category_id,
+    //     'description'=>$request->description_uz,
+    //  ]);
     //    dd($product);
     return redirect()->route("product.tables");
     }
-       $categories=CategoryRu::pluck('name','id');
+       $categories=CategoryRu::pluck('category_name_ru','id');
     //    dd($categories);
         return view('admin.forms.basic_elements', compact('categories'));
 
@@ -136,13 +139,13 @@ class UserController extends Controller
 
 
     $product_ru=ProductRu::where('id',$id)->first();
-    $product_uz=ProductUz::where('id',$id)->first();
+    // $product_uz=ProductUz::where('id',$id)->first();
     $category=CategoryRu::where('id',$product_ru->category_id)->first();
 
 
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.product_show',compact('product_ru','product_uz','category'));
+    return view('admin.forms.product_show',compact('product_ru','category'));
    }
 
 
@@ -153,15 +156,16 @@ class UserController extends Controller
 
 
     $product_ru=ProductRu::where('id',$id)->first();
-    $product_uz=ProductUz::where('id',$id)->first();
+    // dd($product_ru);
+    // $product_uz=ProductUz::where('id',$id)->first();
     $category=CategoryRu::where('id',$product_ru->category_id)->first();
-    $categories=CategoryRu::pluck('name','id');
+    $categories=CategoryRu::pluck('category_name_ru','id');
 
 
 
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.product_edit',compact('product_ru','product_uz','category','categories'));
+    return view('admin.forms.product_edit',compact('product_ru','category','categories'));
    }
 
 
@@ -175,31 +179,36 @@ class UserController extends Controller
 
        $filename = time() . '.'. $request->fotos->extension();
         $path=public_path('uploads/fotos/');
-        // dd($path.$filename);
         $request->fotos->move($path, $filename);
 
         $product_ru=ProductRu::where('id',$request->product_id)->first();
-        $product_uz=ProductUz::where('id',$request->product_id)->first();
+        // $product_uz=ProductUz::where('id',$request->product_id)->first();
+        if ($product_ru->product_name_ru!=$request->name_ru || $product_ru->product_name_uz!=$request->name_uz ||   $product_ru->price!=$request->price) {
+            $product=ProductRu::create([
+                'product_name_ru'=>$request->name_ru,
+                'product_name_uz'=>$request->name_uz,
+                'price'=>$request->price,
+                'parent_id'=>$product_ru->id,
+                'foto'=>$filename,
+                'category_id'=>$request->category_id,
+                'description_ru'=>$request->description_ru,
+                'description_uz'=>$request->description_uz
 
-        $product_ru->name=$request->name_ru;
-        $product_ru->foto=$filename;
-        $product_ru->description=$request->description_ru;
-        $product_ru->category_id=$request->category_id;
+             ]);
+             $product_ru->soft_delete='active';
 
-
-
-        $product_uz->name=$request->name_uz;
-        $product_uz->foto=$filename;
-        $product_uz->description=$request->description_uz;
-        $product_uz->category_id=$request->category_id;
-
+        } else {
+            $product_ru->product_name_ru=$request->name_ru;
+            $product_ru->product_name_uz=$request->name_uz;
+            $product_ru->foto=$filename;
+            $product_ru->description_ru=$request->description_ru;
+            $product_ru->description_uz=$request->description_uz;
+            $product_ru->category_id=$request->category_id;
+            $product_ru->price=$request->price;
+        }
 
         $product_ru->save();
-        $product_uz->save();
         return redirect()->route("product.tables");
-       // dd($user);
-       // if ($user->save()) {
-       // }
 
    }
 
@@ -212,10 +221,10 @@ class UserController extends Controller
 
 
     $customer_ru = ProductRu::find($id);
-    $customer_uz = ProductUz::find($id);
-    $customer_ru->delete();
-    $customer_uz->delete();
-    // echo 'user delite';
+
+    $customer_ru->soft_delete='active';
+    // dd($customer_ru);
+    $customer_ru->save();
     return redirect()->route('product.tables');
 
    }
@@ -290,40 +299,66 @@ class UserController extends Controller
 
    public function date_time()
    {
-            $tz = new DateTimeZone('Asia/tashkent');
-            $mytime = Carbon::now($tz);
-            $date=date($mytime->toDateString());
-            $time=date($mytime->toTimeString());
+            // $tz = new DateTimeZone('Asia/tashkent');
+            // $mytime = Carbon::now(new DateTimeZone('Asia/tashkent'));
+            // $date=date($mytime->toDateString());
+            // dd($date->);
+            // $time=date($mytime->toTimeString());
+             $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
+             $date=$date->format('Y-m-d');
+            // $order=Order::where('created_at','>',$date)->pluck('name','');
 
 
-        $users=User::where('status','active')->get();
-        //    dd($users);
-        foreach ($users as  $user) {
-            //    dd($user);
-                if ($user->date >= $date) {
-                    if ($user->date > $date) {
-                        $user->status='active';
-                    }
-                    elseif($user->date == $date && $user->time > $time){
-                        $user->status='active';
-                    }
-                    elseif ($user->date == $date && $user->time < $time) {
-                        $user->status='history';
-                    }
+            $product_qunatity = DB::table('orders')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('order_details.quantity')
+            ->where('orders.created_at','>',$date)
+            ->get();
+
+
+
+
+            $product_qunatity_history = DB::table('orders')
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->select('order_details.quantity')
+            ->where('orders.created_at','<',$date)
+            ->get();
+
+            $count_history=0;
+            foreach ($product_qunatity_history as  $history) {
+                $count_history +=$history->quantity;
+
+            }
+            $count_day=0;
+            foreach ($product_qunatity as  $history) {
+                $count_day +=$history->quantity;
+
+            }
+
+
+            $products=ProductRu::get();
+            $list=[];
+            foreach ($products as $product) {
+                if ($product->parent_id !=0) {
+                    $old_product=ProductRu::where('id',$product->parent_id)->first();
+                    // dd($product);
+                    $data=[
+                     'product_name_ru'=>$product->product_name_ru,
+                     'product_name_uz'=>$product->product_name_uz,
+                     'price'=>$product->price,
+                     'created_at'=>$product->created_at->format('y-m-d'),
+                     'old_product_name_ru'=>$old_product->product_name_ru,
+                     'old_product_name_uz'=>$old_product->product_name_uz,
+                     'old_price'=>$old_product->price,
+                     'old_created_at'=>$old_product->created_at->format('y-m-d'),
+                    ];
+                    array_push($list,$data );
                 }
-                else{
-                $user->status='history';
-                }
-                $user->save();
+            }
+            // $list=$list->paginate(10);/
+            // dd($list);
 
-        }
-
-        $user_history=User::where('status','history')->count();
-        $user_active=User::where('status','active')->count();
-
-
-
-        return view('admin.dashboard', compact('user_active','user_history'));
+        return view('admin.dashboard', compact('count_day','count_history','list'));
 
         }
 

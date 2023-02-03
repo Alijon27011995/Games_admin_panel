@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryRu extends Model
 {
     protected $fillable = [
-        'name',
+        'category_name_ru',
         'foto',
-        // 'long',
+        'category_name_uz',
         // 'lat',
     ];
     use HasFactory;

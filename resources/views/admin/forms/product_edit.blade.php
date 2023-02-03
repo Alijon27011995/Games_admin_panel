@@ -42,14 +42,14 @@
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Product Name Ru </label>
-                            <input name="name_ru" value="{{$product_ru->name?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                            <input name="name_ru" value="{{$product_ru->product_name_ru?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Product Name Uz </label>
-                            <input name="name_uz" value="{{$product_uz->name?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                            <input name="name_uz" value="{{$product_ru->product_name_uz?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Description Ru </label>
                             <textarea id="description_uz"  name="description_ru" class="form-control" style="height: 80px">
-                                {{$product_ru->description?? "not nime"}}
+                                {{$product_ru->description_ru?? "not description"}}
                               </textarea>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Description Uz </label>
                            <textarea id="description_uz"  name="description_uz" class="form-control" style="height: 80px">
-                             {{$product_uz->description?? "not nime"}}
+                             {{$product_ru->description_uz ?? "not description"}}
                            </textarea>
                         </div>
                     </div>

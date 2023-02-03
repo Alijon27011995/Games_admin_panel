@@ -55,7 +55,7 @@
                                 <img class="img"  src="{{ url('uploads/fotos/'.$product->foto) }}">
                                 {{-- {{$product->slug}} --}}
                             </td>
-                            <td>{{$product->name}}</td>
+                            <td>{{$product->product_name_ru}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->created_at}}</td>
                             <td>

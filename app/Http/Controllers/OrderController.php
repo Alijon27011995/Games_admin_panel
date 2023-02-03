@@ -52,8 +52,8 @@ class OrderController extends Controller
                 'user_name'=>$user->name,
                 'user_phone'=>$user->phone,
                 'product_quantity'=>$order_datail->quantity,
-                'product_name'=>$product->name,
-                'product_foto'=>$product->foto,
+                'product_name'=>$product->name ?? 'product not found',
+                'product_foto'=>$product->foto ??"not found",
                 'adrress'=>$address->address
             ];
             array_push($list,$data);

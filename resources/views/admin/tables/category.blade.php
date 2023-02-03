@@ -53,7 +53,7 @@
                                 <img class="img" src="{{ url('uploads/fotos/'.$category->foto) }}">
                                 {{-- {{$category->slug}} --}}
                             </td>
-                            <td>{{$category->name}}</td>
+                            <td>{{$category->category_name_ru}}</td>
                             <td>{{$category->created_at}}</td>
                             <td>
                                 <a href="{{route('category.edit', $category->id)}}" class="btn btn-soft-danger btn-icon btn-circle btn-sm"  title="Reject Refund Request">
