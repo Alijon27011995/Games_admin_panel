@@ -27,10 +27,10 @@ class OrderController extends Controller
         // $brands = $brands->paginate(100);
 
 
-
+            // $orders=Order::get();
         $orders = DB::table('orders')
             ->join('users', 'orders.user_id', '=', 'users.id')
-            ->select('orders.*', 'users.phone', 'users.name')
+            ->select('orders.*', 'users.phone_number', 'users.full_name')
             ->orderByDesc('created_at')
             ->simplePaginate(5);
        return view('admin.tables.basic_table_history', compact('orders'));
@@ -52,8 +52,8 @@ class OrderController extends Controller
             $data=[
                 'code'=>$order->code,
                 'date'=>$order->created_at,
-                'user_name'=>$user->name,
-                'user_phone'=>$user->phone,
+                'user_name'=>$user->full_name,
+                'user_phone'=>$user->phone_number,
                 'product_quantity'=>$order_datail->quantity,
                 'product_name'=>$product->name ?? 'product not found',
                 'product_foto'=>$product->foto ??"not found",

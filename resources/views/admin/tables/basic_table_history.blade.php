@@ -48,8 +48,8 @@
                                     {{-- <td>{{$order->created_at}}</td> --}}
                                     {{-- <td>{{$order->date}}</td> --}}
                                     {{-- <td>{{$order->time}}</td> --}}
-                                    <td>{{$order->name}}</td>
-                                    <td>{{$order->phone}}</td>
+                                    <td>{{$order->full_name}}</td>
+                                    <td>{{$order->phone_number}}</td>
                                     {{-- <td>{{$order->email}}</td> --}}
                                     <td>{{$order->created_at}}</td>
                                     {{-- <td>

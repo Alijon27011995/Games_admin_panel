@@ -302,6 +302,9 @@ class UserController extends Controller
              $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
              $date=$date->format('Y-m-d');
 
+            //  $orders=Order::get();
+            //  dd($orders);
+
             $product_qunatity = DB::table('orders')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('order_details.quantity')
