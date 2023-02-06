@@ -299,15 +299,8 @@ class UserController extends Controller
 
    public function date_time()
    {
-            // $tz = new DateTimeZone('Asia/tashkent');
-            // $mytime = Carbon::now(new DateTimeZone('Asia/tashkent'));
-            // $date=date($mytime->toDateString());
-            // dd($date->);
-            // $time=date($mytime->toTimeString());
              $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
              $date=$date->format('Y-m-d');
-            // $order=Order::where('created_at','>',$date)->pluck('name','');
-
 
             $product_qunatity = DB::table('orders')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
@@ -321,7 +314,7 @@ class UserController extends Controller
             $product_qunatity_history = DB::table('orders')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->select('order_details.quantity')
-            ->where('orders.created_at','<',$date)
+            // ->where('orders.created_at','<',$date)
             ->get();
 
             $count_history=0;
@@ -342,6 +335,7 @@ class UserController extends Controller
                 if ($product->parent_id !=0) {
                     $old_product=ProductRu::where('id',$product->parent_id)->first();
                     // dd($product);
+
                     $data=[
                      'product_name_ru'=>$product->product_name_ru,
                      'product_name_uz'=>$product->product_name_uz,

@@ -10,6 +10,8 @@ use App\Models\ProductRu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class OrderController extends Controller
 {
@@ -29,7 +31,8 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->select('orders.*', 'users.phone', 'users.name')
-            ->paginate(10);
+            ->orderByDesc('created_at')
+            ->simplePaginate(5);
        return view('admin.tables.basic_table_history', compact('orders'));
 
     }

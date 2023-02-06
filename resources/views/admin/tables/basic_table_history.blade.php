@@ -71,12 +71,14 @@
                     @endif
 
               </tbody>
+
             </table>
+            <div >
+                {{$orders->links()}}
+            </div>
           </div>
-          <div class="aiz-pagination">
-            {{ $orders->appends(request()->input())->links() }}
         </div>
-        </div>
+
       </div>
     </div>
 </div>
