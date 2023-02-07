@@ -52,7 +52,7 @@ dashboard
     </div>
     <div class="row">
        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card" style="overflow: auto">
 
 
                 <table class="table">

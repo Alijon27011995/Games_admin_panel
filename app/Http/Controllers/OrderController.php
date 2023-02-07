@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Addresse;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -28,11 +29,42 @@ class OrderController extends Controller
 
 
             // $orders=Order::get();
-        $orders = DB::table('orders')
-            ->join('users', 'orders.user_id', '=', 'users.id')
-            ->select('orders.*', 'users.phone_number', 'users.full_name')
-            ->orderByDesc('created_at')
-            ->simplePaginate(5);
+        // $orders = DB::table('orders')
+        //     ->join('users', 'orders.user_id', '=', 'users.id')
+        //     ->select('orders.*', 'users.phone_number', 'users.full_name')
+        //     ->orderByDesc('created_at')
+        //     ->simplePaginate(5);
+
+
+
+
+
+
+            $list=[];
+
+            $orders = DB::table('orders')->orderByDesc('created_at')->simplePaginate(5);
+            // foreach ($orders as  $order) {
+
+            //     $user=User::where('telegram_id',$order->telegram_id)->first();
+
+            //         $data=[
+            //             'id'=>$order->id,
+            //             'code'=>$order->code,
+            //             'date'=>$order->created_at,
+            //             'user_name'=>$user->full_name,
+            //             'user_phone'=>$user->phone_number,
+            //         ];
+
+
+            //         array_push($list,$data);
+            //     // $count_history +=$history->quantity;
+
+            // }
+            // $list=$list->simplePaginate(5);
+
+
+
+
        return view('admin.tables.basic_table_history', compact('orders'));
 
     }
@@ -41,9 +73,9 @@ class OrderController extends Controller
 
 
         $order=Order::where('id',$id)->first();
-        $user=User::where('id',$order->user_id)->first();
+        $user=User::where('telegram_id',$order->telegram_id)->first();
         $order_datails=OrderDetail::where('order_id',$order->id)->get();
-        $address=Address::where('user_id',$user->id)->first();
+        $address=DB::table('addresses')->where('user_id',$user->id)->first();
         // $product=Product::get();
         // dd($product);
         $list=[];
@@ -57,7 +89,7 @@ class OrderController extends Controller
                 'product_quantity'=>$order_datail->quantity,
                 'product_name'=>$product->name ?? 'product not found',
                 'product_foto'=>$product->foto ??"not found",
-                'adrress'=>$address->address
+                'adrress'=>$address->address ?? "not fount"
             ];
             array_push($list,$data);
         }

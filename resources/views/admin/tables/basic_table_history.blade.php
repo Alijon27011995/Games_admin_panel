@@ -42,14 +42,18 @@
 
                         @foreach($orders as $key => $order)
                             @if ($order != null)
+                            @php
+                                $user=\App\Models\User::where('telegram_id',$order->telegram_id)->first();
+                                // dd($user)
+                            @endphp
                                 <tr>
                                     <td>{{ ($key+1)}}</td>
                                     <td>{{$order->code}}</td>
                                     {{-- <td>{{$order->created_at}}</td> --}}
                                     {{-- <td>{{$order->date}}</td> --}}
                                     {{-- <td>{{$order->time}}</td> --}}
-                                    <td>{{$order->full_name}}</td>
-                                    <td>{{$order->phone_number}}</td>
+                                    <td>{{$user->full_name ?? ""}} </td>
+                                    <td>{{$user->phone_number ?? ""}} </td>
                                     {{-- <td>{{$order->email}}</td> --}}
                                     <td>{{$order->created_at}}</td>
                                     {{-- <td>

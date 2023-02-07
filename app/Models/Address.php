@@ -13,5 +13,6 @@ class Address extends Model
         'address',
         'long',
         'lat',
+        'telegram_id'
     ];
 }

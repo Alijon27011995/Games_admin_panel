@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\CategoryRu;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\ProductRu;
 use App\Models\ProductUz;
@@ -111,7 +112,9 @@ class UserController extends Controller
           'price'=>$request->price,
           'foto'=>$filename,
           'category_id'=>$request->category_id,
-          'description'=>$request->description_ru
+          'description_ru'=>$request->description_ru,
+          'description_uz'=>$request->description_uz
+
        ]);
     //    dd($product);
     //    $product=ProductUz::create([
@@ -187,7 +190,7 @@ class UserController extends Controller
             $product=ProductRu::create([
                 'product_name_ru'=>$request->name_ru,
                 'product_name_uz'=>$request->name_uz,
-                'price'=>$request->price,
+                'price'=>$request-> price,
                 'parent_id'=>$product_ru->id,
                 'foto'=>$filename,
                 'category_id'=>$request->category_id,
@@ -302,33 +305,50 @@ class UserController extends Controller
              $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
              $date=$date->format('Y-m-d');
 
-            //  $orders=Order::get();
+             $orders=DB::table('orders');
             //  dd($orders);
 
-            $product_qunatity = DB::table('orders')
-            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-            ->select('order_details.quantity')
+            $order_qunatity = DB::table('orders')
+            // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            // ->select('order_details.quantity')
             ->where('orders.created_at','>',$date)
             ->get();
+            //  dd($order_qunatity);
+
+            // $product_qunatity = DB::table('orders')
+            // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            // ->select('order_details.quantity')
+            // ->where('orders.created_at','>',$date)
+            // ->get();
 
 
 
 
-            $product_qunatity_history = DB::table('orders')
-            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-            ->select('order_details.quantity')
+            $order_qunatity_history = DB::table('orders')
+            // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            // ->select('order_details.quantity')
             // ->where('orders.created_at','<',$date)
             ->get();
 
             $count_history=0;
-            foreach ($product_qunatity_history as  $history) {
-                $count_history +=$history->quantity;
+            foreach ($order_qunatity_history as  $history) {
+
+                $order_details=OrderDetail::where('order_id',$history->id)->get();
+
+                foreach ($order_details as  $history) {
+                    $count_history +=$history->quantity;
+                }
+
+                // $count_history +=$history->quantity;
 
             }
             $count_day=0;
-            foreach ($product_qunatity as  $history) {
-                $count_day +=$history->quantity;
+            foreach ($order_qunatity as  $history) {
+                $order_details=OrderDetail::where('order_id',$history->id)->get();
 
+                foreach ($order_details as  $history) {
+                    $count_day +=$history->quantity;
+                }
             }
 
 
