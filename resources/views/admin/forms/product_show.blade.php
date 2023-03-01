@@ -42,17 +42,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {{-- @dd($user) --}}
-                            <label for="exampleInputName1"> Product Name Ru </label>
+                            <label for="exampleInputName1"> User Name  </label>
                             <input name="name_ru" value="{{$product_ru->product_name_ru?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group">
-                            {{-- @dd($user) --}}
-                            <label for="exampleInputName1"> Product Name Uz </label>
+                            <label for="exampleInputName1"> User Name </label>
                             <input name="name_uz" value="{{$product_ru->product_name_ru?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
-                    </div>
+                    </div> --}}
                   </div>
                   <div class="row">
                    <div class="col-md-12">

@@ -2,7 +2,7 @@
 @extends('layouts.index')
 
 @section('title')
-  dashboard
+  Users
 @endsection
 
 <style>
@@ -22,7 +22,7 @@
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New Product</a></li>
+        <li class="breadcrumb-item"><a  href="{{route('user.create')}}" class="badge badge-outline-success">Create New User</a></li>
       </ol>
     </nav>
 </div>
@@ -30,14 +30,14 @@
     <div class="col-12 grid-margin">
       <div class="card selection">
         <div class="card-body">
-          <h4 class="card-title">Products</h4>
+          <h4 class="card-title">Users</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                     <th>#</th>
                     <th>Foto</th>
-                    <th>Product Name</th>
+                    <th>User Name</th>
                     <th>Price</th>
                     <th>Date</th>
                     <th>Options </th>

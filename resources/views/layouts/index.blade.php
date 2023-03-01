@@ -95,7 +95,7 @@
               <span class="menu-title">Product</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          {{-- <li class="nav-item menu-items">
             <a class="nav-link" href="{{route('orders.list')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
@@ -110,7 +110,7 @@
               </span>
               <span class="menu-title">Categories</span>
             </a>
-          </li>
+          </li> --}}
 
         </ul>
       </nav>

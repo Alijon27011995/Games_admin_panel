@@ -31,7 +31,6 @@ class CategoryController extends Controller
     {
              $categories=CategoryRu::get();
              return view('admin.tables.category', compact('categories'));
-
     }
 
     /**

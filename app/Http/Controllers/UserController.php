@@ -76,6 +76,7 @@ class UserController extends Controller
 
 
         $products=ProductRu::where('soft_delete',null)->get();
+        // dd($product);
         return view('admin.tables.product', compact('products'));
    }
 
