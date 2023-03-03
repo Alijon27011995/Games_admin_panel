@@ -12,7 +12,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Telegram\Bot\Laravel\Facades\Telegram;
 // use File;
@@ -46,21 +48,43 @@ class UserController extends Controller
     {
         if ($request->method() == 'POST')
         {
-        // dd($request->all());
+
 
             $request->validate([
                 'user_name' => 'required|string',
                 'password' => 'required|string',
+                'remember' => 'boolean'
             ]);
-                if ($request->user_name=='admin' && $request->password='admin12345') {
+
+            $remember=($request->remember)?true:false;
+            if($user = User::where('email', $request->email)->orWhere('login', $request->user_name)->first()){
+
+                if ($request->password = $user->password) {
+                    // dd($request->all());
+
+                    auth()->login($user, $remember);
+                    // flash(translate('Welcome to TINFIS'))->success();
+                    if ($user->staff="admin") {
+                        return $this->date_time();
+                    } else {
+                        return $this->productTable();
+                    }
 
 
-                    //    return 'came';
-                    // return view('admin.dashboard');
-                    return $this->date_time();
-                } else {
-                    return view('admin.samples.login');
                 }
+            }
+
+
+
+                // if ($request->user_name=='admin' && $request->password='admin12345') {
+
+
+                //     //    return 'came';
+                //     // return view('admin.dashboard');
+                //     return $this->date_time();
+                // } else {
+                //     return view('admin.samples.login');
+                // }
 
         }
         else
@@ -74,10 +98,16 @@ class UserController extends Controller
    public function productTable()
    {
 
-
-        $products=ProductRu::where('soft_delete',null)->get();
-        // dd($product);
-        return view('admin.tables.product', compact('products'));
+        // dd(auth()->id());
+        // @if(Auth::user()->user_type == 'admin'
+        // dd();
+        // $products=ProductRu::where('soft_delete',null)->get();
+        // if (condition) {
+        //     # code...
+        // }
+        $users=User::get();
+        // dd($users);
+        return view('admin.tables.product', compact('users'));
    }
 
 //    public function games_history()
@@ -100,23 +130,25 @@ class UserController extends Controller
         // $request->validate([
         //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
-        $filename = time() . '.'. $request->fotos->extension();
-        $path=public_path('uploads/fotos/');
-        // dd($path.$filename);
-        $request->fotos->move($path, $filename);
+
         // dd($filename);
 
+        if ($request->fotos) {
+            $filename = time() . '.'. $request->fotos->extension();
+            $path=public_path('uploads/fotos/');
+            // dd($path.$filename);
+            $request->fotos->move($path, $filename);
+        }else {
+            $filename=0;
+        }
 
-       $product=ProductRu::create([
-          'product_name_ru'=>$request->name_ru,
-          'product_name_uz'=>$request->name_uz,
-          'price'=>$request->price,
-          'foto'=>$filename,
-          'category_id'=>$request->category_id,
-          'description_ru'=>$request->description_ru,
-          'description_uz'=>$request->description_uz
 
-       ]);
+
+       $user=new User;
+       $user->login=$request->login;
+       $user->password = $request->password;
+        //  dd($user);
+         $user->save();
     //    dd($product);
     //    $product=ProductUz::create([
     //     'name'=>$request->name_uz,
@@ -142,14 +174,14 @@ class UserController extends Controller
    {
 
 
-    $product_ru=ProductRu::where('id',$id)->first();
-    // $product_uz=ProductUz::where('id',$id)->first();
-    $category=CategoryRu::where('id',$product_ru->category_id)->first();
-
+    // $product_ru=ProductRu::where('id',$id)->first();
+    // // $product_uz=ProductUz::where('id',$id)->first();
+    // $category=CategoryRu::where('id',$product_ru->category_id)->first();
+    $user=User::where('id',$id)->first();
 
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.product_show',compact('product_ru','category'));
+    return view('admin.forms.product_show',compact('user'));
    }
 
 

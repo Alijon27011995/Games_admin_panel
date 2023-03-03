@@ -35,7 +35,7 @@
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input name="password" type="text" class="form-control p_input" required>
+                    <input name="password" type="password" class="form-control p_input" required>
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">

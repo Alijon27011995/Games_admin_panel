@@ -33,60 +33,78 @@
       <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title"> Show Product</h4>
+            <h4 class="card-title"> Show user</h4>
 
-            <form method="POST"  action="{{ route('product.update') }}" enctype="multipart/form-data">
+            {{-- <form method="POST"  action="{{ route('product.update') }}" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('POST') --}}
                   <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> User Name  </label>
-                            <input name="name_ru" value="{{$product_ru->product_name_ru?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                            <input name="name_ru" value="{{$user->full_name?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
                     </div>
-                    {{-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputName1"> User Name </label>
+                            <label for="exampleInputName1"> Phone Number </label>
                             <input name="name_uz" value="{{$product_ru->product_name_ru?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
                         </div>
-                    </div> --}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Email  </label>
+                            <input name="email" value="{{$user->full_name?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputName1"> INN </label>
+                            <input name="name_uz" value="{{$user->inn?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> GroupID  </label>
+                            <input name="email" value="{{$user->group_id?? "not nime"}}"  type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputName1"> Login </label>
+                            <input name="name_uz" value="{{$user->login?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputName1"> Password </label>
+                            <input name="name_uz" value="{{$user->password?? "not nime"}}" type="text" class="form-control" id="exampleInputName1" placeholder=" Full Name" required>
+                        </div>
+                    </div>
                   </div>
                   <div class="row">
                    <div class="col-md-12">
                         <div class="form-group">
-                            <label for="exampleInputEmail3">Price</label>
-                            <input name="price" value="{{$product_ru->price?? "not nime"}}"  type="number" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
+                            <label for="exampleInputEmail3">Address</label>
+                            <input name="price" value="{{$user->address?? "not fount address"}}"  type="number" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
                         </div>
                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                         <div class="form-group">
-                            <label for="exampleInputEmail3">Select Category</label>
-                            {{-- <input type="text" value="{{$category->name?? "not nime"}}" name="" id=""> --}}
-                            <input name="text" value="{{$category->category_name_ru?? "not nime"}}"  type="text" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
-                         </div>
-                    </div>
-                   </div>
                    <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             {{-- @dd($user) --}}
-                            <label for="exampleInputName1"> Description Ru </label>
+                            <label for="exampleInputName1"> Description  </label>
                             <textarea id="description_uz"  name="description_uz" class="form-control" style="height: 80px">
-                                {{$product_ru->description_ru?? "not nime"}}
+                                {{$user->description?? "not discription"}}
                               </textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{-- @dd($user) --}}
-                            <label for="exampleInputName1"> Description Uz </label>
-                           <textarea id="description_uz"  name="description_uz" class="form-control" style="height: 80px">
-                             {{$product_ru->description_uz?? "not nime"}}
-                           </textarea>
                         </div>
                     </div>
                   </div>
@@ -97,7 +115,7 @@
                             {{-- <input type="" name=""  style="display:none"> --}}
                             {{-- <input name="fotos"  type="file" enctype="multipart/form-data" required> --}}
 
-                            <img class="box"  src="{{ url('uploads/fotos/'.$product_ru->foto) }}">
+                            <img class="box"  src="{{ url('uploads/fotos/'.$user->foto) }}">
 
                         </div>
                     </div>
@@ -105,7 +123,7 @@
 
                 {{-- <button type="submit" class="btn btn-primary float-right mr-2">Save</button> --}}
                 {{-- <button class="btn btn-dark">Cancel</button> --}}
-            </form>
+            {{-- </form> --}}
           </div>
         </div>
       </div>
