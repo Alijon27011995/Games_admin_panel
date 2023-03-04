@@ -124,7 +124,7 @@ class UserController extends Controller
          // if (condition) {
          //     # code...
          // }
-         $users=User::get();
+         $users=User::where('staff','user')->get();
          // dd($users);
          return view('admin.tables.product', compact('users'));
     }
