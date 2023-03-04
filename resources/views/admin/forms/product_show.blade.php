@@ -93,7 +93,7 @@
                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputEmail3">Address</label>
-                            <input name="price" value="{{$user->address?? "not fount address"}}"  type="number" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
+                            <input name="price" value="{{$user->address?? "not fount address"}}"  type="text" class="form-control" id="exampleInputEmail3" placeholder="product price" required>
                         </div>
                    </div>
                   </div>

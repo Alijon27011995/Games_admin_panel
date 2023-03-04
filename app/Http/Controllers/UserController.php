@@ -57,23 +57,25 @@ class UserController extends Controller
             ]);
 
             $remember=($request->remember)?true:false;
-            if($user = User::where('email', $request->email)->orWhere('login', $request->user_name)->first()){
-
+            if($user = User::where('login', $request->user_name)->first()){
+                //  dd($user);
                 if ($request->password = $user->password) {
-                    // dd($request->all());
+                    // dd(auth()->login($user, $remember));
 
                     auth()->login($user, $remember);
-                    // flash(translate('Welcome to TINFIS'))->success();
-                    if ($user->staff="admin") {
+                    // dd(auth()->id());
+                    if ($user->staff=="admin") {
+                        // return "admin";
                         return $this->date_time();
                     } else {
-                        return $this->productTable();
+                        // return 'came';
+                        // return $this->productTable();
+                        return $this->productTableForUser($user);
                     }
-
 
                 }
             }
-
+            return view('admin.samples.login');
 
 
                 // if ($request->user_name=='admin' && $request->password='admin12345') {
@@ -95,19 +97,51 @@ class UserController extends Controller
 
 
 
-   public function productTable()
+    public function logout(Request $request)
+    {
+        // if(auth()->user() != null && (auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff')){
+        //     $redirect_route = 'login';
+        // }
+        // else{
+            $redirect_route = 'user.login';
+        // }
+
+        // $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect()->route($redirect_route);
+    }
+
+
+    public function productTable()
+    {
+
+         // dd(auth()->id());
+         // @if(Auth::user()->user_type == 'admin'
+         // dd();
+         // $products=ProductRu::where('soft_delete',null)->get();
+         // if (condition) {
+         //     # code...
+         // }
+         $users=User::get();
+         // dd($users);
+         return view('admin.tables.product', compact('users'));
+    }
+
+
+   public function productTableForUser($user)
    {
 
-        // dd(auth()->id());
-        // @if(Auth::user()->user_type == 'admin'
-        // dd();
-        // $products=ProductRu::where('soft_delete',null)->get();
-        // if (condition) {
-        //     # code...
-        // }
-        $users=User::get();
+        // $users=User::get();
         // dd($users);
-        return view('admin.tables.product', compact('users'));
+        return view('admin.tables.product_for_user', compact('user'));
+   }
+   public function productTableForUserNew()
+   {
+
+        $user=User::where('id',auth()->id())->first();
+        return view('admin.tables.product_for_user', compact('user'));
    }
 
 //    public function games_history()
@@ -191,17 +225,17 @@ class UserController extends Controller
    {
 
 
-    $product_ru=ProductRu::where('id',$id)->first();
-    // dd($product_ru);
-    // $product_uz=ProductUz::where('id',$id)->first();
-    $category=CategoryRu::where('id',$product_ru->category_id)->first();
-    $categories=CategoryRu::pluck('category_name_ru','id');
+    // $product_ru=ProductRu::where('id',$id)->first();
+    // // dd($product_ru);
+    // // $product_uz=ProductUz::where('id',$id)->first();
+    // $category=CategoryRu::where('id',$product_ru->category_id)->first();
+    // $categories=CategoryRu::pluck('category_name_ru','id');
 
-
+    $user=User::where('id',$id)->first();
 
     //    dd($id);
     //    return 'came';
-    return view('admin.forms.product_edit',compact('product_ru','category','categories'));
+    return view('admin.forms.product_edit',compact('user'));
    }
 
 
@@ -213,38 +247,34 @@ class UserController extends Controller
 
     //    dd($request->all());
 
-       $filename = time() . '.'. $request->fotos->extension();
+      if ($request->fotos) {
+        $filename = time() . '.'. $request->fotos->extension();
         $path=public_path('uploads/fotos/');
         $request->fotos->move($path, $filename);
+      }
 
-        $product_ru=ProductRu::where('id',$request->product_id)->first();
+        $user=User::where('id',$request->product_id)->first();
         // $product_uz=ProductUz::where('id',$request->product_id)->first();
-        if ($product_ru->product_name_ru!=$request->name_ru || $product_ru->product_name_uz!=$request->name_uz ||   $product_ru->price!=$request->price) {
-            $product=ProductRu::create([
-                'product_name_ru'=>$request->name_ru,
-                'product_name_uz'=>$request->name_uz,
-                'price'=>$request-> price,
-                'parent_id'=>$product_ru->id,
-                'foto'=>$filename,
-                'category_id'=>$request->category_id,
-                'description_ru'=>$request->description_ru,
-                'description_uz'=>$request->description_uz
 
-             ]);
-             $product_ru->soft_delete='active';
+            $user->full_name=$request->full_name;
+            $user->email=$request->email;
+            $user->foto=$filename;
+            $user->description=$request->description;
+            $user->inn=$request->inn;
+            $user->phone_number=$request->phone_number;
+            $user->login=$request->login;
+            $user->password=$request->password;
+            $user->group_id=$request->group_id;
+            $user->address=$request->address;
+        $user->save();
 
-        } else {
-            $product_ru->product_name_ru=$request->name_ru;
-            $product_ru->product_name_uz=$request->name_uz;
-            $product_ru->foto=$filename;
-            $product_ru->description_ru=$request->description_ru;
-            $product_ru->description_uz=$request->description_uz;
-            $product_ru->category_id=$request->category_id;
-            $product_ru->price=$request->price;
+        if (Auth::user()->staff=="admin") {
+            return redirect()->route("product.tables");
         }
+        return $this->productTableForUser($user);
 
-        $product_ru->save();
-        return redirect()->route("product.tables");
+
+
 
    }
 
@@ -256,11 +286,12 @@ class UserController extends Controller
     //    User::destroy(User::findOrFail($id)->user->id);
 
 
-    $customer_ru = ProductRu::find($id);
+    $customer_ru = User::find($id);
+    $customer_ru->delete();
 
-    $customer_ru->soft_delete='active';
-    // dd($customer_ru);
-    $customer_ru->save();
+    // $customer_ru->soft_delete='active';
+    // // dd($customer_ru);
+    // $customer_ru->save();
     return redirect()->route('product.tables');
 
    }

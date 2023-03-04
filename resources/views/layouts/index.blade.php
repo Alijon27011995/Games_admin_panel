@@ -80,6 +80,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           @if (Auth::user()->staff=="admin")
+          {{-- @dd(Auth::user()) --}}
             <li class="nav-item menu-items">
                 <a class="nav-link" href="{{route('admin.dashboard')}}">
                 <span class="menu-icon">
@@ -88,8 +89,6 @@
                 <span class="menu-title">Dashboard</span>
                 </a>
             </li>
-          @endif
-          @if (Auth::user()->staff=="admin")
             <li class="nav-item menu-items">
                 <a class="nav-link" href="{{route('product.tables')}}">
                 <span class="menu-icon">
@@ -101,7 +100,8 @@
           @endif
           @if (Auth::user()->staff=="user")
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{route('product.tables')}}">
+                <a class="nav-link" href="{{route('product.tables_for_user_new')}}">
+                    {{-- {{route('product.edit', $user->id)}} --}}
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
@@ -160,7 +160,7 @@
                   <h6 class="p-3 mb-0">Profile</h6>
                   <div class="dropdown-divider"></div>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item" href="{{route('user.login')}}">
+                  <a class="dropdown-item preview-item" href="{{route('logout')}}">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>

@@ -49,7 +49,7 @@ Route::get('/dashboard','UserController@dashboard')->name('admin.dashboard');
 Route::get('/','UserController@login_blade')->name('admin.login');
 
 Route::match(['get', 'post'],'/users/login', 'UserController@login_form')->name('user.login');
-
+Route::get('/logout', 'UserController@logout')->name('logout');
 
 //  product
 Route::get('/product/table','UserController@productTable')->name('product.tables');
@@ -58,6 +58,10 @@ Route::get('/product/show/{id}','UserController@productShow')->name('product.sho
 Route::get('/product/table/edit/{id}','UserController@productEdit')->name('product.edit');
 Route::post('/product/table/update','UserController@productUpdate')->name('product.update');
 Route::get('/product/table/destroy/{id}','UserController@productDestroy')->name('product.destroy');
+
+
+Route::get('/user/table/','UserController@productTableForUser')->name('product.tables_for_user');
+Route::get('/user/table/','UserController@productTableForUserNew')->name('product.tables_for_user_new');
 
 
 // order
