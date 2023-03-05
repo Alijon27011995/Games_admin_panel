@@ -376,13 +376,11 @@ class UserController extends Controller
             $count_day=0;
 
              foreach ($users as  $history) {
-                   if ($history->created_at < $date) {
-                    $count_history +=1;
-                   } else {
+                   if ($history->created_at > $date) {
                     $count_day +=1;
                    }
+                   $count_history +=1;
 
-                    // $count_day +=1;
             }
 
 
