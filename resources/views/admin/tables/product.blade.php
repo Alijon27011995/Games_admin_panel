@@ -8,9 +8,9 @@
 <style>
  .selection{
   /* background-color: lightblue;
-  width: 110px;
-  height: 110px; */
-  /* overflow: auto !important; */
+  width: 110px; */
+  height: 500px;
+  overflow: auto !important;
 }
 .img{
     width: 100px !important;
@@ -29,10 +29,10 @@
 <div class="row " >
     <div class="col-12 grid-margin">
       <div class="card selection">
-        <div class="card-body">
+        <div class="card-body ">
           <h4 class="card-title">Users</h4>
           <div class="table-responsive">
-            <table class="table">
+            <table class="table " >
               <thead>
                 <tr>
                     <th>#</th>

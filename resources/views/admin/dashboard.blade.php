@@ -12,7 +12,7 @@ dashboard
         <div class="col-sm-6 grid-margin">
             <div class="card">
               <div class="card-body">
-                <h5>Today's Products</h5>
+                <h5>Today's User</h5>
                 <div class="row">
                   <div class="col-8 col-sm-12 col-xl-8 my-auto">
                     <div class="d-flex d-sm-block d-md-flex align-items-center">
@@ -32,7 +32,7 @@ dashboard
       <div class="col-sm-6 grid-margin">
         <div class="card">
           <div class="card-body">
-            <h5>Product Hostory</h5>
+            <h5>User Hostory</h5>
             <div class="row">
               <div class="col-8 col-sm-12 col-xl-8 my-auto">
                 <div class="d-flex d-sm-block d-md-flex align-items-center">
@@ -50,7 +50,7 @@ dashboard
         </div>
       </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
        <div class="col-lg-12 grid-margin stretch-card">
             <div class="card" style="overflow: auto">
 
@@ -58,7 +58,6 @@ dashboard
                 <table class="table">
                     <thead>
                       <tr>
-                          {{-- <th>#</th> --}}
                           <th>Product name</th>
                           <th>Options </th>
                           <th>date </th>
@@ -66,7 +65,6 @@ dashboard
                       </tr>
                     </thead>
                     <tbody>
-                          {{-- @if ($orders) --}}
 
                           @foreach ($list as $item)
                               <tr>
@@ -111,7 +109,7 @@ dashboard
         </div>
 
 
-    </div>
+    </div> --}}
 
 
 

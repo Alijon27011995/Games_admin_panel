@@ -124,7 +124,7 @@ class UserController extends Controller
          // if (condition) {
          //     # code...
          // }
-         $users=User::where('staff','user')->get();
+         $users=User::where('staff','user')->latest()->get();
          // dd($users);
          return view('admin.tables.product', compact('users'));
     }
@@ -180,6 +180,7 @@ class UserController extends Controller
 
        $user=new User;
        $user->login=$request->login;
+       $user->full_name=$request->full_name;
        $user->password = $request->password;
         //  dd($user);
          $user->save();
@@ -366,17 +367,34 @@ class UserController extends Controller
 
    public function date_time()
    {
-             $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
-             $date=$date->format('Y-m-d');
+            $date=Carbon::now(new DateTimeZone('Asia/tashkent'));
+            $date=$date->format('Y-m-d');
 
-             $orders=DB::table('orders');
+            $users=DB::table('users')->where('staff','user')->get();
+
+            $count_history=0;
+            $count_day=0;
+
+             foreach ($users as  $history) {
+                   if ($history->created_at < $date) {
+                    $count_history +=1;
+                   } else {
+                    $count_day +=1;
+                   }
+
+                    // $count_day +=1;
+            }
+
+
+
+            //  $orders=DB::table('orders');
             //  dd($orders);
 
-            $order_qunatity = DB::table('orders')
-            // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-            // ->select('order_details.quantity')
-            ->where('orders.created_at','>',$date)
-            ->get();
+            // $order_qunatity = DB::table('orders')
+            // // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            // // ->select('order_details.quantity')
+            // ->where('orders.created_at','>',$date)
+            // ->get();
             //  dd($order_qunatity);
 
             // $product_qunatity = DB::table('orders')
@@ -388,58 +406,58 @@ class UserController extends Controller
 
 
 
-            $order_qunatity_history = DB::table('orders')
-            // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
-            // ->select('order_details.quantity')
-            // ->where('orders.created_at','<',$date)
-            ->get();
+            // $order_qunatity_history = DB::table('orders')
+            // // ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            // // ->select('order_details.quantity')
+            // // ->where('orders.created_at','<',$date)
+            // ->get();
 
-            $count_history=0;
-            foreach ($order_qunatity_history as  $history) {
+            // $count_history=0;
+            // foreach ($order_qunatity_history as  $history) {
 
-                $order_details=OrderDetail::where('order_id',$history->id)->get();
+            //     $order_details=OrderDetail::where('order_id',$history->id)->get();
 
-                foreach ($order_details as  $history) {
-                    $count_history +=$history->quantity;
-                }
+            //     foreach ($order_details as  $history) {
+            //         $count_history +=$history->quantity;
+            //     }
 
-                // $count_history +=$history->quantity;
+            //     // $count_history +=$history->quantity;
 
-            }
-            $count_day=0;
-            foreach ($order_qunatity as  $history) {
-                $order_details=OrderDetail::where('order_id',$history->id)->get();
+            // }
+            // $count_day=0;
+            // foreach ($order_qunatity as  $history) {
+            //     $order_details=OrderDetail::where('order_id',$history->id)->get();
 
-                foreach ($order_details as  $history) {
-                    $count_day +=$history->quantity;
-                }
-            }
+            //     foreach ($order_details as  $history) {
+            //         $count_day +=$history->quantity;
+            //     }
+            // }
 
 
-            $products=ProductRu::get();
-            $list=[];
-            foreach ($products as $product) {
-                if ($product->parent_id !=0) {
-                    $old_product=ProductRu::where('id',$product->parent_id)->first();
-                    // dd($product);
+            // $products=ProductRu::get();
+            // $list=[];
+            // foreach ($products as $product) {
+            //     if ($product->parent_id !=0) {
+            //         $old_product=ProductRu::where('id',$product->parent_id)->first();
+            //         // dd($product);
 
-                    $data=[
-                     'product_name_ru'=>$product->product_name_ru,
-                     'product_name_uz'=>$product->product_name_uz,
-                     'price'=>$product->price,
-                     'created_at'=>$product->created_at->format('y-m-d'),
-                     'old_product_name_ru'=>$old_product->product_name_ru,
-                     'old_product_name_uz'=>$old_product->product_name_uz,
-                     'old_price'=>$old_product->price,
-                     'old_created_at'=>$old_product->created_at->format('y-m-d'),
-                    ];
-                    array_push($list,$data );
-                }
-            }
+            //         $data=[
+            //          'product_name_ru'=>$product->product_name_ru,
+            //          'product_name_uz'=>$product->product_name_uz,
+            //          'price'=>$product->price,
+            //          'created_at'=>$product->created_at->format('y-m-d'),
+            //          'old_product_name_ru'=>$old_product->product_name_ru,
+            //          'old_product_name_uz'=>$old_product->product_name_uz,
+            //          'old_price'=>$old_product->price,
+            //          'old_created_at'=>$old_product->created_at->format('y-m-d'),
+            //         ];
+            //         array_push($list,$data );
+            //     }
+            // }
             // $list=$list->paginate(10);/
             // dd($list);
 
-        return view('admin.dashboard', compact('count_day','count_history','list'));
+        return view('admin.dashboard', compact('count_day','count_history'));
 
         }
 

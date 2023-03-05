@@ -33,14 +33,22 @@
                 @csrf
                 @method('POST')
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            {{-- @dd($user) --}}
+                            <label for="exampleInputName1"> Name </label>
+                            <input name="full_name"  type="text" class="form-control" id="exampleInputName1" placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> login </label>
                             <input name="login"  type="text" class="form-control" id="exampleInputName1" placeholder="Create login" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="col-md-4">
                         <div class="form-group">
                             {{-- @dd($user) --}}
                             <label for="exampleInputName1"> Password </label>
