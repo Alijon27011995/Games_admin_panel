@@ -46,7 +46,8 @@ Route::get('/dashboard','UserController@dashboard')->name('admin.dashboard');
 // Http::post()
 // });
 
-Route::get('/','UserController@login_blade')->name('admin.login');
+Route::get('/','UserController@main');
+Route::get('/login/form','UserController@login_blade')->name('admin.login');
 
 Route::match(['get', 'post'],'/users/login', 'UserController@login_form')->name('user.login');
 Route::get('/logout', 'UserController@logout')->name('logout');

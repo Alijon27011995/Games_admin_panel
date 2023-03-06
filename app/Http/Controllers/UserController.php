@@ -504,6 +504,30 @@ class UserController extends Controller
 
    }
 
+
+
+
+
+     //Front
+
+
+
+
+   public function main()
+   {
+    //    dd('vavsa');
+    //    User::destroy(User::findOrFail($id)->user->id);
+
+
+    //    $customer = Order::find($id);
+        // $customer->delete();
+        // echo 'user delite';
+        return view('frontend.front.main');
+
+   }
+
+
+
 }
 
 
