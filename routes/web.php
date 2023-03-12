@@ -46,7 +46,11 @@ Route::get('/dashboard','UserController@dashboard')->name('admin.dashboard');
 // Http::post()
 // });
 
-Route::get('/','UserController@main');
+Route::get('/','UserController@main')->name('main.table');
+Route::get('/news','UserController@news')->name('new.table');
+Route::match(['get', 'post'],'/news/create', 'UserController@newsTable')->name('news.create');
+
+
 Route::get('/login/form','UserController@login_blade')->name('admin.login');
 
 Route::match(['get', 'post'],'/users/login', 'UserController@login_form')->name('user.login');
@@ -63,6 +67,8 @@ Route::get('/product/table/destroy/{id}','UserController@productDestroy')->name(
 
 Route::get('/user/table/','UserController@productTableForUser')->name('product.tables_for_user');
 Route::get('/user/table/','UserController@productTableForUserNew')->name('product.tables_for_user_new');
+Route::get('/user/table/','UserController@productTableForUserNewFront')->name('product.tables_for_user_new_front');
+
 
 
 // order

@@ -30,7 +30,7 @@
           {{-- @if (Auth::user()->staff=="admin") --}}
           {{-- @dd(Auth::user()) --}}
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{route('admin.dashboard')}}">
+                <a class="nav-link" href="{{route('main.table')}}">
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{route('product.tables')}}">
+                <a class="nav-link" href="{{route('new.table')}}">
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
@@ -48,7 +48,7 @@
           {{-- @endif --}}
           {{-- @if (Auth::user()->staff=="user") --}}
             <li class="nav-item menu-items">
-                <a class="nav-link" href="{{route('product.tables_for_user_new')}}">
+                <a class="nav-link" href="{{route('product.tables_for_user_new_front')}}">
                     {{-- {{route('product.edit', $user->id)}} --}}
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
@@ -87,7 +87,7 @@
 
         </nav>
         <!-- partial -->
-        <div class="main-panel ">
+        <div class="main-panel pt-4  text-center">
 
             @yield('content')
           <!-- content-wrapper ends -->

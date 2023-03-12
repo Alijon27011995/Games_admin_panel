@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\CategoryRu;
+use App\Models\News;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -129,6 +130,29 @@ class UserController extends Controller
          return view('admin.tables.product', compact('users'));
     }
 
+    public function newsTable(Request $request)
+    {
+
+        if ($request->method() == 'POST')
+        {
+            // dd($request->all());
+            // $request->validate([
+            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
+
+            // dd($filename);
+
+
+
+           $news=new News;
+           $news->theme=$request->theme;
+           $news->description=$request->description;
+            //  dd($user);
+             $news->save();
+        return redirect()->route("new.table");
+        }
+        return view('frontend.front.news_create');
+    }
 
    public function productTableForUser($user)
    {
@@ -142,6 +166,13 @@ class UserController extends Controller
 
         $user=User::where('id',auth()->id())->first();
         return view('admin.tables.product_for_user', compact('user'));
+   }
+   public function productTableForUserNewFront()
+   {
+
+    $users=User::where('staff','user')->latest()->get();
+    // dd($users);
+    return view('frontend.front.user_list', compact('users'));
    }
 
 //    public function games_history()
@@ -184,19 +215,19 @@ class UserController extends Controller
        $user->password = $request->password;
         //  dd($user);
          $user->save();
-    //    dd($product);
-    //    $product=ProductUz::create([
-    //     'name'=>$request->name_uz,
-    //     'price'=>$request->price,
-    //     'foto'=>$filename,
-    //     'category_id'=>$request->category_id,
-    //     'description'=>$request->description_uz,
-    //  ]);
-    //    dd($product);
+        //    dd($product);
+        //    $product=ProductUz::create([
+        //     'name'=>$request->name_uz,
+        //     'price'=>$request->price,
+        //     'foto'=>$filename,
+        //     'category_id'=>$request->category_id,
+        //     'description'=>$request->description_uz,
+        //  ]);
+        //    dd($product);
     return redirect()->route("product.tables");
     }
        $categories=CategoryRu::pluck('category_name_ru','id');
-    //    dd($categories);
+        //    dd($categories);
         return view('admin.forms.basic_elements', compact('categories'));
 
    }
@@ -515,14 +546,20 @@ class UserController extends Controller
 
    public function main()
    {
-    //    dd('vavsa');
-    //    User::destroy(User::findOrFail($id)->user->id);
+        $users=User::get();
+        $news=DB::table('news')->get();
+        // dd($news);
+        // dd($users);
+        return view('frontend.front.main',compact('users','news'));
 
+   }
 
-    //    $customer = Order::find($id);
-        // $customer->delete();
-        // echo 'user delite';
-        return view('frontend.front.main');
+   public function news()
+   {
+        $news=DB::table('news')->get();
+        // return 'came';
+        return view('frontend.front.news',compact('news'));
+
 
    }
 
