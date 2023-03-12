@@ -11,6 +11,14 @@
 <div class=" text-black " style="text-align: center !important">
     <h2 class=" text-blue"> Tashkent University of Information Technologies </h2>
 </div>
+<div class="page-header">
+    <h3 class="page-title"> Basic Tables </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a  href="{{route('user.login')}}" class="badge badge-outline-success">Admin panel</a></li>
+      </ol>
+    </nav>
+</div>
 <div class="row mt-4" style="color: black !important" >
    <div class="col-md-4" style="border-right: 1px solid">
     {{-- @dd($users) --}}
