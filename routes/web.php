@@ -65,9 +65,9 @@ Route::post('/product/table/update','UserController@productUpdate')->name('produ
 Route::get('/product/table/destroy/{id}','UserController@productDestroy')->name('product.destroy');
 
 
-Route::get('/user/table/','UserController@productTableForUser')->name('product.tables_for_user');
-Route::get('/user/table/','UserController@productTableForUserNew')->name('product.tables_for_user_new');
-Route::get('/user/table/','UserController@productTableForUserNewFront')->name('product.tables_for_user_new_front');
+Route::get('/user/table/admin','UserController@productTableForUser')->name('product.tables_for_user');
+Route::get('/user/table/user','UserController@productTableForUserNew')->name('product.tables_for_user_new');
+Route::get('/user/table/front','UserController@productTableForUserNewFront')->name('product.tables_for_user_new_front');
 
 
 

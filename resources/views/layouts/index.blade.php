@@ -101,7 +101,6 @@
           @if (Auth::user()->staff=="user")
             <li class="nav-item menu-items">
                 <a class="nav-link" href="{{route('product.tables_for_user_new')}}">
-                    {{-- {{route('product.edit', $user->id)}} --}}
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
