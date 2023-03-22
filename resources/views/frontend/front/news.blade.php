@@ -9,7 +9,7 @@
 </style>
 @section('content')
 <div class="page-header text-black">
-    <h2 class=" text-blue ml-5 "> Tashkent University of Information Technologies </h2>
+    <h2 class=" text-blue ml-5 ">OTM BITIRUVCHILARI UCHUN WEB-TEHNOLOGIYALAR ASOSIDA MA`LUMOTLAR BAZASINI BOSHQARISH TIZMINI YARATISH </h2>
 </div>
 <div class="page-header">
     <h3 class="page-title"> Basic Tables </h3>

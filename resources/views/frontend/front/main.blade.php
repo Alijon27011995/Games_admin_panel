@@ -9,13 +9,13 @@
 </style>
 @section('content')
 <div class=" text-black " style="text-align: center !important">
-    <h2 class=" text-blue"> Tashkent University of Information Technologies </h2>
+    <h2 class=" text-blue"> OTM BITIRUVCHILARI UCHUN WEB-TEHNOLOGIYALAR ASOSIDA MA`LUMOTLAR BAZASINI BOSHQARISH TIZMINI YARATISH </h2>
 </div>
 <div class="page-header">
     <h3 class="page-title"> Basic Tables </h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a  href="{{route('user.login')}}" class="badge badge-outline-success">Admin panel</a></li>
+        <li class="breadcrumb-item"><a  href="{{route('user.login')}}" class="badge badge-outline-success">Tizimga kirish</a></li>
       </ol>
     </nav>
 </div>
